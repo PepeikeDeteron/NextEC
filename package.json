@@ -10,7 +10,8 @@
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
     "format": "prettier --write .",
-    "test-all": "npx yarn-run-all lint check-types format lint:fix"
+    "test-all": "npx yarn-run-all lint check-types format lint:fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "11.1.2",
@@ -26,7 +27,17 @@
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-react": "^7.25.1",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
     "prettier": "2.3.2",
     "typescript": "^4.4.2"
-  }
+  },
+  "lint-staged": {
+    "*.@(ts|tsx)": [
+      "yarn lint",
+      "yarn format",
+      "yarn lint:fix"
+    ]
+  },
+  "license": "UNLICENSED"
 }
