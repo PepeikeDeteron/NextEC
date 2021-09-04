@@ -1,16 +1,10 @@
 import React from 'react';
-import Head from 'next/head';
+import TestButtonList from '@/components/molecules/TestButtonList';
 
 const Home: React.VFC = () => {
   return (
     <>
-      <Head>
-        <title>Hello World</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div>
-        <h1>yarn dev test</h1>
-      </div>
+      <TestButtonList />
     </>
   );
 };
