@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/atoms/TestButton Default 1`] = `
+<button
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB gXpbhc"
+  disabled={false}
+  onBlur={[Function]}
+  onDragLeave={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className="MuiButton-label"
+  >
+    Default
+  </span>
+</button>
+`;
+
+exports[`Storyshots components/atoms/TestButton Primary 1`] = `
+<button
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB gXpbhc MuiButton-containedPrimary"
+  disabled={false}
+  onBlur={[Function]}
+  onDragLeave={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className="MuiButton-label"
+  >
+    Primary
+  </span>
+</button>
+`;
+
+exports[`Storyshots components/atoms/TestButton Secondary 1`] = `
+<button
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB gXpbhc MuiButton-containedSecondary"
+  disabled={false}
+  onBlur={[Function]}
+  onDragLeave={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className="MuiButton-label"
+  >
+    Secondary
+  </span>
+</button>
+`;
