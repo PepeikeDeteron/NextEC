@@ -13,7 +13,8 @@
     "test-all": "npx yarn-run-all lint check-types format lint:fix",
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o build"
+    "build-storybook": "build-storybook -o build",
+    "test": "jest"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -33,6 +34,7 @@
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-links": "^6.3.8",
     "@storybook/react": "^6.3.8",
+    "@types/jest": "^27.0.1",
     "@types/node": "^16.7.10",
     "@types/react": "^17.0.19",
     "@types/styled-components": "^5.1.14",
@@ -45,10 +47,19 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-react": "^7.25.1",
     "husky": "^7.0.2",
+    "jest": "26.6.3",
+    "jest-watch-typeahead": "^0.6.4",
     "lint-staged": "^11.1.2",
     "prettier": "2.3.2",
+    "ts-jest": "^27.0.5",
     "typescript": "^4.4.2"
   },
+  "eslintIgnore": [
+    "/jest.config.js",
+    "/jest.storyshots.config.js",
+    "/test/__mocks__/fileMock.js",
+    "/test/__mocks__/styleMock.js"
+  ],
   "lint-staged": {
     "*.@(ts|tsx)": [
       "yarn lint",

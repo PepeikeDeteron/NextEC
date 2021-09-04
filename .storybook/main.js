@@ -15,7 +15,7 @@ module.exports = {
       },
     },
   ],
-	webpackFinal: async (config) => {
+  webpackFinal: async (config) => {
     config.resolve.alias['@'] = `${rootPath}/src`;
     return config;
   },
