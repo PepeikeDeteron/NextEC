@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
-import { ColorProps } from '@/modules/types';
+import { ColorProps } from '@/models/types';
 
 type Props = {
   color?: ColorProps;
