@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/atoms/TextField Default 1`] = `
+<div
+  className="MuiFormControl-root MuiTextField-root sc-gsTEea MuiFormControl-marginDense MuiFormControl-fullWidth"
+>
+  <div
+    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense MuiInput-marginDense"
+    onClick={[Function]}
+  >
+    <input
+      aria-invalid={false}
+      autoComplete="off"
+      autoFocus={false}
+      className="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
+      disabled={false}
+      onAnimationStart={[Function]}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      required={true}
+      rows={1}
+      type="text"
+    />
+  </div>
+</div>
+`;
