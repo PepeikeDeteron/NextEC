@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots components/atoms/TestButton Default 1`] = `
+exports[`Storyshots components/atoms/RegisterButton Default 1`] = `
 <button
-  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB gXpbhc"
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo"
   disabled={false}
   onBlur={[Function]}
   onDragLeave={[Function]}
@@ -26,9 +26,9 @@ exports[`Storyshots components/atoms/TestButton Default 1`] = `
 </button>
 `;
 
-exports[`Storyshots components/atoms/TestButton Primary 1`] = `
+exports[`Storyshots components/atoms/RegisterButton Primary 1`] = `
 <button
-  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB gXpbhc MuiButton-containedPrimary"
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo MuiButton-containedPrimary"
   disabled={false}
   onBlur={[Function]}
   onDragLeave={[Function]}
@@ -52,9 +52,9 @@ exports[`Storyshots components/atoms/TestButton Primary 1`] = `
 </button>
 `;
 
-exports[`Storyshots components/atoms/TestButton Secondary 1`] = `
+exports[`Storyshots components/atoms/RegisterButton Secondary 1`] = `
 <button
-  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB gXpbhc MuiButton-containedSecondary"
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo MuiButton-containedSecondary"
   disabled={false}
   onBlur={[Function]}
   onDragLeave={[Function]}
