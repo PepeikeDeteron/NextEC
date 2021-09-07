@@ -1,34 +1,37 @@
 import React, { ComponentProps } from 'react';
 import { Meta, Story } from '@storybook/react';
-import TestButton from '.';
+import RegisterButton from '.';
 
 export default {
-  title: 'components/atoms/TestButton',
-  component: TestButton,
+  title: 'components/atoms/RegisterButton',
+  components: RegisterButton,
   argTypes: {
     color: {
       control: 'color',
     },
+    onClick: {
+      action: 'clicked',
+    },
   },
 } as Meta;
 
-const Template: Story<ComponentProps<typeof TestButton>> = (args) => (
-  <TestButton {...args} />
+const Template: Story<ComponentProps<typeof RegisterButton>> = (props) => (
+  <RegisterButton {...props} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  value: 'Default',
+  label: 'Default',
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
   color: 'primary',
-  value: 'Primary',
+  label: 'Primary',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   color: 'secondary',
-  value: 'Secondary',
+  label: 'Secondary',
 };
