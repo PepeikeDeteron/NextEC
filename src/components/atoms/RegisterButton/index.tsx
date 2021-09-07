@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, ButtonProps } from '@material-ui/core';
 import styled from 'styled-components';
+import { Button, ButtonProps } from '@material-ui/core';
 import { ColorProps } from '@/models/types';
 
 type ContainerProps = Omit<ButtonProps, 'variant'> & {
@@ -14,10 +14,10 @@ type Props = {
 } & ContainerProps;
 
 const Component: React.VFC<Props> = (props) => {
-  const { label, ...others } = props;
+  const { label, ...restProps } = props;
 
   return (
-    <Button variant="contained" {...others}>
+    <Button variant="contained" {...restProps}>
       {label}
     </Button>
   );

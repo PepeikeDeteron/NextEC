@@ -1,6 +1,6 @@
 import React from 'react';
-import { TextField, TextFieldProps } from '@material-ui/core';
 import styled from 'styled-components';
+import { TextField, TextFieldProps } from '@material-ui/core';
 
 type ContainerProps = Omit<TextFieldProps, 'margin' | 'autoComplete'>;
 
@@ -14,7 +14,7 @@ const Component: React.VFC<Props> = (props) => {
     multiline = false,
     required = true,
     rows = 1,
-    ...others
+    ...restProps
   } = props;
 
   return (
@@ -25,7 +25,7 @@ const Component: React.VFC<Props> = (props) => {
       multiline={multiline}
       required={required}
       rows={rows}
-      {...others}
+      {...restProps}
     />
   );
 };
