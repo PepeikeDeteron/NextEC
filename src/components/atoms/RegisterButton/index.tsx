@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { Button, ButtonProps } from '@material-ui/core';
 import styled from 'styled-components';
 import { ColorProps } from '@/models/types';
 
-type ContainerProps = {
+type ContainerProps = Omit<ButtonProps, 'variant'> & {
   color: ColorProps;
   label: string;
   onClick: () => void;
