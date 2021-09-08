@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { usersProps } from '@/models/types';
+import { userProps } from '@/models/types';
 
 type State = {
-  users: usersProps;
+  users: userProps;
 };
 
 const initialState: State = {
@@ -13,11 +13,11 @@ const initialState: State = {
   },
 };
 
-export const usersSlice = createSlice({
+export const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    signIn: (state: State, action: PayloadAction<usersProps>) => {
+    signIn: (state: State, action: PayloadAction<userProps>) => {
       state.users.isSignedIn = true;
       state.users.uid = action.payload.uid;
       state.users.username = action.payload.username;
@@ -29,4 +29,4 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { signIn, signOut } = usersSlice.actions;
+export const { signIn, signOut } = userSlice.actions;
