@@ -64,7 +64,7 @@ const Component: React.VFC<Props> = (props) => {
         value={confirmPassword}
         onChange={inputConfirmPassword}
       />
-      <Spacer />
+      <Spacer height={32} />
       <div className={'center'}>
         <RegisterButton
           label="アカウントを登録する"

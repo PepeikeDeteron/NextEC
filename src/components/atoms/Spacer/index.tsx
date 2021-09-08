@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export type SpacerValue = 2 | 4 | 8 | 16 | 32 | 64 | 128;
+
 type ContainerProps = {
-  children?: React.ReactNode;
+  width?: SpacerValue;
+  height?: SpacerValue;
 };
 
 type Props = {
@@ -10,14 +13,22 @@ type Props = {
 } & ContainerProps;
 
 const Component: React.FC<Props> = (props) => {
-  const { className } = props;
+  const { className, width = 0, height = 0 } = props;
 
-  return <div className={className}></div>;
+  return (
+    <div className={className}>
+      <span
+        style={{
+          display: 'inline-block',
+          width: width,
+          height: height,
+        }}
+      />
+    </div>
+  );
 };
 
-const StyledComponent = styled(Component)`
-  height: 32px;
-`;
+const StyledComponent = styled(Component)``;
 
 const Container: React.FC<ContainerProps> = (props) => {
   return <StyledComponent {...props} />;
