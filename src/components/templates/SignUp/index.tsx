@@ -40,6 +40,7 @@ const Component: React.VFC<Props> = (props) => {
 
   return (
     <div className={className}>
+      <h1 className={'title'}>アカウント登録</h1>
       <TextField
         label="ユーザー名"
         type="text"
@@ -85,6 +86,13 @@ const StyledComponent = styled(Component)`
 
   & .center {
     margin: 0 auto;
+    text-align: center;
+  }
+
+  & .title {
+    font-size: 2rem;
+    color: #1565c0;
+    margin: 2rem auto 0 auto;
     text-align: center;
   }
 `;
