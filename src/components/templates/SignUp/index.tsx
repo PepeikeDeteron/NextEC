@@ -79,10 +79,10 @@ const Component: React.VFC<Props> = (props) => {
 
 const StyledComponent = styled(Component)`
   max-width: 100vw;
-  width: 400px;
+  width: 560px;
   height: auto;
   margin: 0 auto;
-  padding: 0.5rem;
+  padding: 5rem;
 
   & .center {
     margin: 0 auto;
