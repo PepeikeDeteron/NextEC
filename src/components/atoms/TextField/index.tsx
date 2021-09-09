@@ -36,4 +36,4 @@ const Container: React.VFC<ContainerProps> = (props) => {
   return <StyledComponent {...props} />;
 };
 
-export default Container;
+export default React.memo(Container);

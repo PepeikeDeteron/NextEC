@@ -1,7 +1,8 @@
 export type ColorProps = 'primary' | 'secondary' | 'inherit';
 
-export type usersProps = {
+export type userProps = {
   isSignedIn?: boolean;
+  role: string;
   uid: string;
   username: string;
 };
