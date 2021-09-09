@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "jest.config.js",
-    "src/lib/firebase.js"
+    "src/lib/firebase.ts"
   ],
   "exclude": ["node_modules"]
 }

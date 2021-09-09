@@ -8,6 +8,7 @@ type State = {
 const initialState: State = {
   users: {
     isSignedIn: false,
+    role: '',
     uid: '',
     username: '',
   },
@@ -19,11 +20,13 @@ export const userSlice = createSlice({
   reducers: {
     signIn: (state: State, action: PayloadAction<userProps>) => {
       state.users.isSignedIn = true;
+      state.users.role = action.payload.role;
       state.users.uid = action.payload.uid;
       state.users.username = action.payload.username;
     },
     signOut: (state: State) => {
-      (state.users.isSignedIn = false), (state.users.uid = '');
+      (state.users.isSignedIn = false), (state.users.role = '');
+      state.users.uid = '';
       state.users.username = '';
     },
   },

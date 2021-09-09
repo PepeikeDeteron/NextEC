@@ -1,5 +1,9 @@
 import React, { useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { collection, doc, setDoc } from '@firebase/firestore';
+import { auth, db, firebaseTimeStamp } from '@/lib/firebase';
 import RegisterButton from '@/components/atoms/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
 import TextField from '@/components/atoms/TextField';
@@ -19,6 +23,7 @@ type ContainerProps = {
   inputConfirmPassword?: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
+  onSignUp?: React.MouseEventHandler<HTMLButtonElement> & (() => void);
 };
 
 type Props = {
@@ -36,6 +41,7 @@ const Component: React.VFC<Props> = (props) => {
     inputEmail,
     inputPassword,
     inputConfirmPassword,
+    onSignUp,
   } = props;
 
   return (
@@ -70,7 +76,7 @@ const Component: React.VFC<Props> = (props) => {
         <RegisterButton
           label="アカウントを登録する"
           color="primary"
-          onClick={onClickTest}
+          onClick={() => onSignUp}
         />
       </div>
     </div>
@@ -97,8 +103,53 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-// ボタンコンポーネントの再レンダリング防止用の即時関数
-const onClickTest = () => console.log('clicked');
+const signUp = (props: ContainerProps) => {
+  const { username, email, password, confirmPassword } = props;
+
+  return async () => {
+    // TODO: ちゃんとしたバリデーションを後で実装する
+    if (
+      username === '' ||
+      email === '' ||
+      password === '' ||
+      confirmPassword === ''
+    ) {
+      alert('必須項目が未入力です。');
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      alert('パスワードが一致しません。');
+      return false;
+    }
+
+    try {
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email as string,
+        password as string
+      );
+      const user = result.user;
+
+      if (user) {
+        const uid = String(user.uid);
+        const timestamp = firebaseTimeStamp;
+        const userRef = collection(db, 'users');
+
+        await setDoc(doc(userRef, 'uid'), {
+          created_at: timestamp,
+          updated_at: timestamp,
+          role: 'customer',
+          uid,
+          username,
+          email,
+        });
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
 
 const Container: React.VFC<ContainerProps> = (props) => {
   const [username, setUserName] = useState<string>('');
@@ -134,6 +185,12 @@ const Container: React.VFC<ContainerProps> = (props) => {
     [setConfirmPassword]
   );
 
+  const dispatch = useDispatch();
+
+  const onSignUp = useCallback(() => {
+    dispatch(signUp(props));
+  }, [dispatch]);
+
   const containerProps = {
     username,
     email,
@@ -143,6 +200,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
     inputEmail,
     inputPassword,
     inputConfirmPassword,
+    onSignUp,
   };
 
   return <StyledComponent {...containerProps}>{props}</StyledComponent>;
