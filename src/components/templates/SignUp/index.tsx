@@ -70,7 +70,7 @@ const Component: React.VFC<Props> = (props) => {
         <RegisterButton
           label="アカウントを登録する"
           color="primary"
-          onClick={() => console.log('clicked')}
+          onClick={onClickTest}
         />
       </div>
     </div>
@@ -96,6 +96,9 @@ const StyledComponent = styled(Component)`
     text-align: center;
   }
 `;
+
+// ボタンコンポーネントの再レンダリング防止用の即時関数
+const onClickTest = () => console.log('clicked');
 
 const Container: React.VFC<ContainerProps> = (props) => {
   const [username, setUserName] = useState<string>('');
