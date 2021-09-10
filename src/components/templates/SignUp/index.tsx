@@ -1,9 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { collection, doc, setDoc } from '@firebase/firestore';
-import { auth, db, firebaseTimeStamp } from '@/lib/firebase';
+import { auth, db, firebaseTimestamp } from '@/lib/firebase';
 import RegisterButton from '@/components/atoms/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
 import TextField from '@/components/atoms/TextField';
@@ -23,7 +22,7 @@ type ContainerProps = {
   inputConfirmPassword?: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
-  onSignUp?: React.MouseEventHandler<HTMLButtonElement> & (() => void);
+  onSignUp?: () => void;
 };
 
 type Props = {
@@ -46,7 +45,7 @@ const Component: React.VFC<Props> = (props) => {
 
   return (
     <div className={className}>
-      <h1 className={'title'}>アカウント登録</h1>
+      <h2 className={'title'}>アカウント登録</h2>
       <TextField
         label="ユーザー名"
         type="text"
@@ -60,7 +59,7 @@ const Component: React.VFC<Props> = (props) => {
         onChange={inputEmail}
       />
       <TextField
-        label="パスワード"
+        label="パスワード（半角英数字・6文字以上）"
         type="password"
         value={password}
         onChange={inputPassword}
@@ -76,7 +75,7 @@ const Component: React.VFC<Props> = (props) => {
         <RegisterButton
           label="アカウントを登録する"
           color="primary"
-          onClick={() => onSignUp}
+          onClick={onSignUp}
         />
       </div>
     </div>
@@ -103,55 +102,7 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const signUp = (props: ContainerProps) => {
-  const { username, email, password, confirmPassword } = props;
-
-  return async () => {
-    // TODO: ちゃんとしたバリデーションを後で実装する
-    if (
-      username === '' ||
-      email === '' ||
-      password === '' ||
-      confirmPassword === ''
-    ) {
-      alert('必須項目が未入力です。');
-      return false;
-    }
-
-    if (password !== confirmPassword) {
-      alert('パスワードが一致しません。');
-      return false;
-    }
-
-    try {
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email as string,
-        password as string
-      );
-      const user = result.user;
-
-      if (user) {
-        const uid = String(user.uid);
-        const timestamp = firebaseTimeStamp;
-        const userRef = collection(db, 'users');
-
-        await setDoc(doc(userRef, 'uid'), {
-          created_at: timestamp,
-          updated_at: timestamp,
-          role: 'customer',
-          uid,
-          username,
-          email,
-        });
-      }
-    } catch (error) {
-      alert(error);
-    }
-  };
-};
-
-const Container: React.VFC<ContainerProps> = (props) => {
+const Container: React.VFC<ContainerProps> = () => {
   const [username, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -185,11 +136,50 @@ const Container: React.VFC<ContainerProps> = (props) => {
     [setConfirmPassword]
   );
 
-  const dispatch = useDispatch();
+  const onSignUp = async () => {
+    // TODO: ちゃんとしたバリデーションを後で実装する
+    if (
+      username === '' ||
+      email === '' ||
+      password === '' ||
+      confirmPassword === ''
+    ) {
+      alert('必須項目が未入力です。');
+      return false;
+    }
 
-  const onSignUp = useCallback(() => {
-    dispatch(signUp(props));
-  }, [dispatch]);
+    if (password !== confirmPassword) {
+      alert('パスワードが一致しません。');
+      return false;
+    }
+
+    try {
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = result.user;
+
+      if (user) {
+        const uid = user.uid;
+        const timestamp = firebaseTimestamp;
+        const userRef = collection(db, 'user');
+
+        setDoc(doc(userRef, uid), {
+          created_at: timestamp,
+          email: email,
+          role: 'customer',
+          uid: uid,
+          updated_at: timestamp,
+          username: username,
+        });
+      }
+    } catch (error) {
+      alert('アカウント登録に失敗しました。もう一度お試しください。');
+      return error;
+    }
+  };
 
   const containerProps = {
     username,
@@ -203,7 +193,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
     onSignUp,
   };
 
-  return <StyledComponent {...containerProps}>{props}</StyledComponent>;
+  return <StyledComponent {...{ ...containerProps }} />;
 };
 
 export default Container;

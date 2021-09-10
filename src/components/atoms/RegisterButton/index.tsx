@@ -6,7 +6,6 @@ import { ColorProps } from '@/models/types';
 type ContainerProps = Omit<ButtonProps, 'variant'> & {
   color: ColorProps;
   label: string;
-  onClick: () => void;
 };
 
 type Props = {
