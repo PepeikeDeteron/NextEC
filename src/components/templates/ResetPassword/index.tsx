@@ -23,7 +23,7 @@ const Component: React.VFC<Props> = (props) => {
 
   return (
     <div className={className}>
-      <h2 className={'title'}>パスワードをリセットする</h2>
+      <h2 className={'title'}>パスワードリセット</h2>
       <TextField
         label="メールアドレス"
         type="email"
@@ -33,7 +33,7 @@ const Component: React.VFC<Props> = (props) => {
       <Spacer height={32} />
       <div className={'center'}>
         <RegisterButton
-          label="パスワードをリセット"
+          label="パスワードリセット"
           color="primary"
           onClick={onResetPassword}
         />
