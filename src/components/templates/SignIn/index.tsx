@@ -111,6 +111,13 @@ const Container: React.VFC<ContainerProps> = () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       const user = result.user;
 
+      if (!user.emailVerified) {
+        alert(
+          'メールアドレスの認証が完了していません。送信されたメールの URL をクリックして本登録を完了させてください。'
+        );
+        return false;
+      }
+
       if (user) {
         const uid = user.uid;
         const userRef = collection(db, 'user');
