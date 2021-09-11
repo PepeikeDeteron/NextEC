@@ -55,6 +55,12 @@ const Component: React.VFC<Props> = (props) => {
           <a>アカウント登録はこちら</a>
         </Link>
       </div>
+      <Spacer height={8} />
+      <div className={'center'}>
+        <Link href="/ResetPassword">
+          <a>パスワードをお忘れの方はこちら</a>
+        </Link>
+      </div>
     </div>
   );
 };
