@@ -168,7 +168,11 @@ const Container: React.VFC<ContainerProps> = () => {
           (pw) => pw === EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD
         ) !== -1
       ) {
-        alert('メールアドレスが既に登録されています。');
+        alert(
+          'メールアドレスが既に登録されています。サインインを続行してください。'
+        );
+
+        router.push('/SignIn');
         return false;
       }
 

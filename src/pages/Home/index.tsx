@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import SignOut from '@/components/templates/SignOut';
 import Template from '@/components/templates/Home';
 
 const Home: React.VFC = () => {
@@ -8,6 +9,7 @@ const Home: React.VFC = () => {
         <title>ホーム画面</title>
       </Head>
       <Template />
+      <SignOut />
     </>
   );
 };
