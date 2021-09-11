@@ -6,11 +6,11 @@ import styled from 'styled-components';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { collection, doc, getDoc } from '@firebase/firestore';
 import { auth, db } from '@/lib/firebase';
+import { userProps } from '@/models/types';
 import { signIn } from '@/modules/user/userSlice';
 import RegisterButton from '@/components/atoms/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
 import TextField from '@/components/atoms/TextField';
-import { userProps } from '@/models/types';
 
 type ContainerProps = {
   email?: string;
