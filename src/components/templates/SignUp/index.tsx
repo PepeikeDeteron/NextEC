@@ -1,7 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { createUserWithEmailAndPassword } from '@firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  EmailAuthProvider,
+  fetchSignInMethodsForEmail,
+} from '@firebase/auth';
 import { collection, doc, setDoc } from '@firebase/firestore';
 import { auth, db, firebaseTimestamp } from '@/lib/firebase';
 import RegisterButton from '@/components/atoms/RegisterButton';
@@ -157,6 +161,17 @@ const Container: React.VFC<ContainerProps> = () => {
     }
 
     try {
+      const providers = await fetchSignInMethodsForEmail(auth, email);
+
+      if (
+        providers.findIndex(
+          (pw) => pw === EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD
+        ) !== -1
+      ) {
+        alert('メールアドレスが既に登録されています。');
+        return false;
+      }
+
       const result = await createUserWithEmailAndPassword(
         auth,
         email,
