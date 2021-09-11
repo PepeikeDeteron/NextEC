@@ -49,9 +49,12 @@ const Component: React.VFC<Props> = (props) => {
       <div className={'center'}>
         <RegisterButton label="サインイン" color="primary" onClick={onSignIn} />
       </div>
-      <Link href="/SignUp">
-        <a>アカウント登録はこちら</a>
-      </Link>
+      <Spacer height={16} />
+      <div className={'center'}>
+        <Link href="/SignUp">
+          <a>アカウント登録はこちら</a>
+        </Link>
+      </div>
     </div>
   );
 };
