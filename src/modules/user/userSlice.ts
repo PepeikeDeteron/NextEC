@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userProps } from '@/models/types';
 
 type State = {
-  users: userProps;
+  user: userProps;
 };
 
 const initialState: State = {
-  users: {
+  user: {
     isSignedIn: false,
     role: '',
     uid: '',
@@ -15,19 +15,20 @@ const initialState: State = {
 };
 
 export const userSlice = createSlice({
-  name: 'users',
+  name: 'user',
   initialState,
   reducers: {
     signIn: (state: State, action: PayloadAction<userProps>) => {
-      state.users.isSignedIn = true;
-      state.users.role = action.payload.role;
-      state.users.uid = action.payload.uid;
-      state.users.username = action.payload.username;
+      state.user.isSignedIn = true;
+      state.user.role = action.payload.role;
+      state.user.uid = action.payload.uid;
+      state.user.username = action.payload.username;
     },
     signOut: (state: State) => {
-      (state.users.isSignedIn = false), (state.users.role = '');
-      state.users.uid = '';
-      state.users.username = '';
+      state.user.isSignedIn = false;
+      state.user.role = '';
+      state.user.uid = '';
+      state.user.username = '';
     },
   },
 });

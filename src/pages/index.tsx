@@ -1,10 +1,10 @@
 import React from 'react';
-import SignIn from '@/pages/SignIn';
+import Route from '@/pages/Home';
 
 const Home: React.VFC = () => {
   return (
     <>
-      <SignIn />
+      <Route />
     </>
   );
 };
