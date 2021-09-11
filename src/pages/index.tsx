@@ -1,11 +1,9 @@
 import React from 'react';
-import SignUp from '@/components/templates/SignUp';
-import SignIn from '@/components/templates/SignIn';
+import SignIn from '@/pages/SignIn';
 
 const Home: React.VFC = () => {
   return (
     <>
-      <SignUp />
       <SignIn />
     </>
   );

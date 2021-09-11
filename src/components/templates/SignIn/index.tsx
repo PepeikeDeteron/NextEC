@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import RegisterButton from '@/components/atoms/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
@@ -43,6 +44,9 @@ const Component: React.VFC<Props> = (props) => {
           onClick={() => console.log('sign in')}
         />
       </div>
+      <Link href="/SignUp">
+        <a>アカウント登録はこちら</a>
+      </Link>
     </div>
   );
 };
