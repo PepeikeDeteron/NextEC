@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { collection, doc, setDoc } from '@firebase/firestore';
@@ -136,6 +137,8 @@ const Container: React.VFC<ContainerProps> = () => {
     [setConfirmPassword]
   );
 
+  const router = useRouter();
+
   const onSignUp = async () => {
     // TODO: ちゃんとしたバリデーションを後で実装する
     if (
@@ -174,6 +177,8 @@ const Container: React.VFC<ContainerProps> = () => {
           updated_at: timestamp,
           username: username,
         });
+
+        router.push('/');
       }
     } catch (error) {
       alert('アカウント登録に失敗しました。もう一度お試しください。');
