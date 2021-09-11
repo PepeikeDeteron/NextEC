@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   EmailAuthProvider,
   fetchSignInMethodsForEmail,
+  sendEmailVerification,
 } from '@firebase/auth';
 import { collection, doc, setDoc } from '@firebase/firestore';
 import { auth, db, firebaseTimestamp } from '@/lib/firebase';
@@ -203,6 +204,11 @@ const Container: React.VFC<ContainerProps> = () => {
           updated_at: timestamp,
           username: username,
         });
+
+        await sendEmailVerification(user);
+        alert(
+          'アドレス確認用のメールを送信しました。URL をクリックして本登録を完了させてください。'
+        );
 
         router.push('/');
       }
