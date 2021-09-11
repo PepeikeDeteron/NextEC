@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/modules/store';
 
@@ -12,11 +11,6 @@ const Home: React.VFC = () => {
       <h2>Home</h2>
       <p>ID：{userId}</p>
       <p>ユーザ名：{userName}</p>
-
-      <br />
-      <Link href="/SignIn">
-        <button>サインイン（仮）</button>
-      </Link>
     </>
   );
 };

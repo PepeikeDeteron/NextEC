@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import {
@@ -82,6 +83,12 @@ const Component: React.VFC<Props> = (props) => {
           color="primary"
           onClick={onSignUp}
         />
+      </div>
+      <Spacer height={16} />
+      <div className={'center'}>
+        <Link href="/SignIn">
+          <a>アカウントをお持ちの方はこちら</a>
+        </Link>
       </div>
     </div>
   );
