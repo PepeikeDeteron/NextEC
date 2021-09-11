@@ -1,9 +1,16 @@
 import React, { useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { signInWithEmailAndPassword } from '@firebase/auth';
+import { collection, doc, getDoc } from '@firebase/firestore';
+import { auth, db } from '@/lib/firebase';
+import { signIn } from '@/modules/user/userSlice';
 import RegisterButton from '@/components/atoms/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
 import TextField from '@/components/atoms/TextField';
+import { userProps } from '@/models/types';
 
 type ContainerProps = {
   email?: string;
@@ -12,6 +19,7 @@ type ContainerProps = {
   inputPassword?: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
+  onSignIn?: () => void;
 };
 
 type Props = {
@@ -19,7 +27,8 @@ type Props = {
 } & ContainerProps;
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, email, password, inputEmail, inputPassword } = props;
+  const { className, email, password, inputEmail, inputPassword, onSignIn } =
+    props;
 
   return (
     <div className={className}>
@@ -38,11 +47,7 @@ const Component: React.VFC<Props> = (props) => {
       />
       <Spacer height={32} />
       <div className={'center'}>
-        <RegisterButton
-          label="サインイン"
-          color="primary"
-          onClick={() => console.log('sign in')}
-        />
+        <RegisterButton label="サインイン" color="primary" onClick={onSignIn} />
       </div>
       <Link href="/SignUp">
         <a>アカウント登録はこちら</a>
@@ -89,11 +94,51 @@ const Container: React.VFC<ContainerProps> = () => {
     [setPassword]
   );
 
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const onSignIn = async () => {
+    // TODO: ちゃんとしたバリデーションを後で実装する
+    if (email === '' || password === '') {
+      alert('必須項目が未入力です。');
+      return false;
+    }
+
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      const user = result.user;
+
+      if (user) {
+        const uid = user.uid;
+        const userRef = collection(db, 'user');
+        const userSnap = await getDoc(doc(userRef, uid));
+        const userData = userSnap.data() as userProps;
+
+        dispatch(
+          signIn({
+            isSignedIn: true,
+            role: userData.role,
+            uid: uid,
+            username: userData.username,
+          })
+        );
+
+        router.push('/');
+      }
+    } catch (error) {
+      alert(
+        'ログインに失敗しました。メールアドレスやパスワードが合っているか確認してください。'
+      );
+      return error;
+    }
+  };
+
   const containerProps = {
     email,
     password,
     inputEmail,
     inputPassword,
+    onSignIn,
   };
 
   return <StyledComponent {...{ ...containerProps }} />;
