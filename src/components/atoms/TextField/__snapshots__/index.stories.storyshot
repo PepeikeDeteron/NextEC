@@ -2,17 +2,17 @@
 
 exports[`Storyshots components/atoms/TextField Default 1`] = `
 <div
-  className="MuiFormControl-root MuiTextField-root sc-gsTEea MuiFormControl-marginDense MuiFormControl-fullWidth"
+  className="MuiFormControl-root MuiTextField-root sc-dlfnuX MuiFormControl-marginDense MuiFormControl-fullWidth"
 >
   <div
-    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense MuiInput-marginDense"
+    className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiFilledInput-marginDense"
     onClick={[Function]}
   >
     <input
       aria-invalid={false}
       autoComplete="off"
       autoFocus={false}
-      className="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
+      className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputMarginDense MuiFilledInput-inputMarginDense"
       disabled={false}
       onAnimationStart={[Function]}
       onBlur={[Function]}

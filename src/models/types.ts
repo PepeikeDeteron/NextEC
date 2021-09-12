@@ -6,3 +6,8 @@ export type userProps = {
   uid: string;
   username: string;
 };
+
+export type imageProps = {
+  id: string;
+  path: string;
+};
