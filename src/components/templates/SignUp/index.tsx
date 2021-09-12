@@ -182,35 +182,35 @@ const Container: React.VFC<ContainerProps> = () => {
 
         router.push('/SignIn');
         return false;
-      }
-
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = result.user;
-
-      if (user) {
-        const uid = user.uid;
-        const timestamp = firebaseTimestamp;
-        const userRef = collection(db, 'user');
-
-        setDoc(doc(userRef, uid), {
-          created_at: timestamp,
-          email: email,
-          role: 'customer',
-          uid: uid,
-          updated_at: timestamp,
-          username: username,
-        });
-
-        await sendEmailVerification(user);
-        alert(
-          'アドレス確認用のメールを送信しました。URL をクリックして本登録を完了させてください。'
+      } else {
+        const result = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
         );
+        const user = result.user;
 
-        router.push('/');
+        if (user) {
+          const uid = user.uid;
+          const timestamp = firebaseTimestamp;
+          const userRef = collection(db, 'user');
+
+          setDoc(doc(userRef, uid), {
+            created_at: timestamp,
+            email: email,
+            role: 'customer',
+            uid: uid,
+            updated_at: timestamp,
+            username: username,
+          });
+
+          await sendEmailVerification(user);
+          alert(
+            'アドレス確認用のメールを送信しました。URL をクリックして本登録を完了させてください。'
+          );
+
+          router.push('/');
+        }
       }
     } catch (error) {
       alert('アカウント登録に失敗しました。もう一度お試しください。');
