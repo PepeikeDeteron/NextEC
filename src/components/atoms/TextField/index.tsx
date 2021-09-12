@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { TextField, TextFieldProps } from '@material-ui/core';
 
-type ContainerProps = Omit<TextFieldProps, 'margin' | 'autoComplete'>;
+type ContainerProps = Omit<
+  TextFieldProps,
+  'margin' | 'autoComplete' | 'variant'
+>;
 
 type Props = {
   className?: string;
@@ -21,6 +24,7 @@ const Component: React.VFC<Props> = (props) => {
     <TextField
       margin="dense"
       autoComplete="off"
+      variant="filled"
       fullWidth={fullWidth}
       multiline={multiline}
       required={required}
