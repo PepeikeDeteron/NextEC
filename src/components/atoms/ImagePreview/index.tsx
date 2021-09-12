@@ -21,7 +21,11 @@ const Component: React.VFC<Props> = (props) => {
   );
 };
 
-const StyledComponent = styled(Component)``;
+const StyledComponent = styled(Component)`
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+`;
 
 const Container: React.VFC<ContainerProps> = (props) => {
   return <StyledComponent {...props} />;
