@@ -209,8 +209,10 @@ const Container: React.VFC<ContainerProps> = () => {
         }
       }
     } catch (error) {
-      alert('アカウント登録に失敗しました。もう一度お試しください。');
-      return error;
+      if (error instanceof Error) {
+        alert('アカウント登録に失敗しました。もう一度お試しください。');
+        console.error(error.message);
+      }
     }
   };
 
