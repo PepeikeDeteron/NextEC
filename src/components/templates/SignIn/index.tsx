@@ -47,7 +47,7 @@ const Component: React.VFC<Props> = (props) => {
       />
       <Spacer height={32} />
       <div className={'center'}>
-        <RegisterButton label="サインイン" color="primary" onClick={onSignIn} />
+        <RegisterButton label="サインイン" onClick={onSignIn} />
       </div>
       <Spacer height={16} />
       <div className={'center'}>

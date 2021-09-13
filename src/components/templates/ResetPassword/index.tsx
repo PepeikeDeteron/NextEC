@@ -32,11 +32,7 @@ const Component: React.VFC<Props> = (props) => {
       />
       <Spacer height={32} />
       <div className={'center'}>
-        <RegisterButton
-          label="パスワードリセット"
-          color="primary"
-          onClick={onResetPassword}
-        />
+        <RegisterButton label="パスワードリセット" onClick={onResetPassword} />
       </div>
       <Spacer height={16} />
       <div className={'center'}>

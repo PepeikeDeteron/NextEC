@@ -79,11 +79,7 @@ const Component: React.VFC<Props> = (props) => {
       />
       <Spacer height={32} />
       <div className={'center'}>
-        <RegisterButton
-          label="アカウントを登録する"
-          color="primary"
-          onClick={onSignUp}
-        />
+        <RegisterButton label="アカウントを登録する" onClick={onSignUp} />
       </div>
       <Spacer height={16} />
       <div className={'center'}>
