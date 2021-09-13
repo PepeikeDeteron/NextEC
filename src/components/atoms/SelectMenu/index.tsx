@@ -24,7 +24,7 @@ const Component: React.VFC<Props> = (props) => {
   const { className, label, required = true, value, set, options } = props;
 
   return (
-    <FormControl variant="filled" className={className}>
+    <FormControl variant="filled" required className={className}>
       <InputLabel>{label}</InputLabel>
       <Select
         required={required}
