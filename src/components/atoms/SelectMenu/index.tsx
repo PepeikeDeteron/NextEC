@@ -32,7 +32,9 @@ const Component: React.VFC<Props> = (props) => {
         onChange={(event) => set(event.target.value as string)}
       >
         {options.map((option) => (
-          <MenuItem key={option.type}>{option.name}</MenuItem>
+          <MenuItem key={option.type} value={option.type}>
+            {option.name}
+          </MenuItem>
         ))}
         ;
       </Select>
