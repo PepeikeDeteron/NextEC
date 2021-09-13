@@ -11,6 +11,7 @@ type ContainerProps = {
   description?: string;
   category?: string;
   capacity?: number;
+  number?: number;
   price?: number;
   setCategory?: any; // FIXME: 後で修正
   inputName?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
@@ -18,6 +19,9 @@ type ContainerProps = {
     HTMLInputElement | HTMLTextAreaElement
   >;
   inputCapacity?: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
+  inputNumber?: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
   inputPrice?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
@@ -34,11 +38,13 @@ const Component: React.VFC<Props> = (props) => {
     description,
     category,
     capacity,
+    number,
     price,
     setCategory,
     inputName,
     inputDescription,
     inputCapacity,
+    inputNumber,
     inputPrice,
   } = props;
 
@@ -69,12 +75,21 @@ const Component: React.VFC<Props> = (props) => {
         <TextField
           label="容量"
           type="number"
+          inputProps={{ min: 0 }}
           value={capacity}
           onChange={inputCapacity}
         />
         <TextField
+          label="個数"
+          type="number"
+          inputProps={{ min: 0 }}
+          value={number}
+          onChange={inputNumber}
+        />
+        <TextField
           label="価格"
           type="number"
+          inputProps={{ min: 0 }}
           value={price}
           onChange={inputPrice}
         />
@@ -105,6 +120,7 @@ const Container: React.VFC<ContainerProps> = () => {
   const [description, setDescription] = useState<string>();
   const [category, setCategory] = useState<string>();
   const [capacity, setCapacity] = useState<number>();
+  const [number, setNumber] = useState<number>();
   const [price, setPrice] = useState<number>();
 
   const inputName = useCallback(
@@ -128,6 +144,13 @@ const Container: React.VFC<ContainerProps> = () => {
     [setCapacity]
   );
 
+  const inputNumber = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setNumber(Number(event.target.value));
+    },
+    [setNumber]
+  );
+
   const inputPrice = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setPrice(Number(event.target.value));
@@ -140,11 +163,13 @@ const Container: React.VFC<ContainerProps> = () => {
     description,
     category,
     capacity,
+    number,
     price,
     setCategory,
     inputName,
     inputDescription,
     inputCapacity,
+    inputNumber,
     inputPrice,
   };
 
