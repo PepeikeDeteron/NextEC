@@ -2,12 +2,20 @@
 
 exports[`Storyshots components/atoms/SelectMenu Default 1`] = `
 <div
-  className="MuiFormControl-root sc-gsTEea kCAmho"
+  className="MuiFormControl-root sc-gsTEea bYpZXr"
 >
   <label
-    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled"
+    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled Mui-required Mui-required"
     data-shrink={false}
-  />
+  >
+    <span
+      aria-hidden={true}
+      className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+    >
+       
+      *
+    </span>
+  </label>
   <div
     className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl"
     onClick={[Function]}
@@ -38,6 +46,7 @@ exports[`Storyshots components/atoms/SelectMenu Default 1`] = `
       onChange={[Function]}
       required={true}
       tabIndex={-1}
+      value=""
     />
     <svg
       aria-hidden={true}

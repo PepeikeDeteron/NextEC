@@ -22,11 +22,7 @@ const Component: React.VFC<Props> = (props) => {
     <>
       <Spacer height={32} />
       <div className={'center'}>
-        <RegisterButton
-          label="サインアウト"
-          color="primary"
-          onClick={onSignOut}
-        />
+        <RegisterButton label="サインアウト" onClick={onSignOut} />
       </div>
     </>
   );

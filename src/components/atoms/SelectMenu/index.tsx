@@ -7,15 +7,13 @@ import {
   MenuItem,
   Select,
 } from '@material-ui/core';
+import { CategoryProps } from '@/data/category';
 
 type ContainerProps = Omit<FormControlProps, 'variant'> & {
   label: string;
-  value: string;
-  set: (value: string) => void;
-  options: {
-    type: string;
-    name: string;
-  }[];
+  value: string | undefined;
+  set: (value: React.SetStateAction<string>) => void;
+  options: CategoryProps[];
 };
 
 type Props = {
@@ -26,15 +24,17 @@ const Component: React.VFC<Props> = (props) => {
   const { className, label, required = true, value, set, options } = props;
 
   return (
-    <FormControl variant="filled" className={className}>
+    <FormControl variant="filled" required className={className}>
       <InputLabel>{label}</InputLabel>
       <Select
         required={required}
-        value={value}
+        value={value ?? ''}
         onChange={(event) => set(event.target.value as string)}
       >
         {options.map((option) => (
-          <MenuItem key={option.type}>{option.name}</MenuItem>
+          <MenuItem key={option.type} value={option.type}>
+            {option.name}
+          </MenuItem>
         ))}
         ;
       </Select>
@@ -43,8 +43,8 @@ const Component: React.VFC<Props> = (props) => {
 };
 
 const StyledComponent = styled(Component)`
-  //TODO: Molecules にしてから微調整
-  margin-bottom: 1rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
   min-width: 10rem;
   width: 100%;
 `;

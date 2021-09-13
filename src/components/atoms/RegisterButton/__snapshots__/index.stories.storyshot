@@ -2,7 +2,7 @@
 
 exports[`Storyshots components/atoms/RegisterButton Default 1`] = `
 <button
-  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo"
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo MuiButton-containedPrimary"
   disabled={false}
   onBlur={[Function]}
   onDragLeave={[Function]}
