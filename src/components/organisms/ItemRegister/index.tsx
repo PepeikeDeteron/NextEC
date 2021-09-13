@@ -1,5 +1,8 @@
 import React, { useState, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { collection, doc, setDoc } from '@firebase/firestore';
+import { db, firebaseTimestamp } from '@/lib/firebase';
 import RegisterButton from '@/components/atoms/RegisterButton';
 import SelectMenu from '@/components/atoms/SelectMenu';
 import Spacer from '@/components/atoms/Spacer';
@@ -25,6 +28,7 @@ type ContainerProps = {
     HTMLInputElement | HTMLTextAreaElement
   >;
   inputPrice?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onItemRegister?: () => void;
 };
 
 type Props = {
@@ -46,6 +50,7 @@ const Component: React.VFC<Props> = (props) => {
     inputCapacity,
     inputNumber,
     inputPrice,
+    onItemRegister,
   } = props;
 
   return (
@@ -95,7 +100,7 @@ const Component: React.VFC<Props> = (props) => {
         />
         <Spacer height={16} />
         <div className={'center'}>
-          <RegisterButton label="登録" onClick={() => console.log('clicked')} />
+          <RegisterButton label="登録" onClick={onItemRegister} />
         </div>
       </div>
     </section>
@@ -165,6 +170,47 @@ const Container: React.VFC<ContainerProps> = () => {
     [setPrice]
   );
 
+  const router = useRouter();
+
+  const onItemRegister = async () => {
+    // TODO: ちゃんとしたバリデーションを後で実装する
+    if (
+      name === '' ||
+      description === '' ||
+      category === '' ||
+      capacity === undefined ||
+      number === undefined ||
+      price === undefined
+    ) {
+      alert('必須項目が未入力です。');
+      return false;
+    }
+
+    try {
+      const itemRef = collection(db, 'item');
+      const uid = doc(itemRef).id;
+      const timestamp = firebaseTimestamp;
+
+      setDoc(doc(itemRef, uid), {
+        created_at: timestamp,
+        uid: uid,
+        name: name,
+        description: description,
+        category: category,
+        capacity: capacity,
+        number: number,
+        price: price,
+      });
+
+      router.push('/');
+    } catch (error) {
+      if (error instanceof Error) {
+        alert('商品の登録に失敗しました。もう一度お試しください。');
+        console.error(error.message);
+      }
+    }
+  };
+
   const containerProps = {
     name,
     description,
@@ -178,6 +224,7 @@ const Container: React.VFC<ContainerProps> = () => {
     inputCapacity,
     inputNumber,
     inputPrice,
+    onItemRegister,
   };
 
   return <StyledComponent {...{ ...containerProps }} />;

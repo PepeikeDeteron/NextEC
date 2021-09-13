@@ -89,9 +89,10 @@ const Container: React.VFC<ContainerProps> = () => {
         router.push('/SignIn');
       }
     } catch (error) {
-      alert('登録されていないメールアドレスです。もう一度お試しください。');
-
-      return error;
+      if (error instanceof Error) {
+        alert('登録されていないメールアドレスです。もう一度お試しください。');
+        console.error(error.message);
+      }
     }
   };
 

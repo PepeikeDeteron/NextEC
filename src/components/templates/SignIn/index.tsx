@@ -142,10 +142,12 @@ const Container: React.VFC<ContainerProps> = () => {
         router.push('/');
       }
     } catch (error) {
-      alert(
-        'ログインに失敗しました。メールアドレスやパスワードが合っているか確認してください。'
-      );
-      return error;
+      if (error instanceof Error) {
+        alert(
+          'ログインに失敗しました。メールアドレスやパスワードが合っているか確認してください。'
+        );
+        console.error(error.message);
+      }
     }
   };
 
