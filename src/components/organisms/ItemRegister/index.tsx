@@ -138,7 +138,7 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.FC<ContainerProps> = () => {
+const Container: React.FC<Partial<ContainerProps>> = () => {
   const [image, setImage] = useState<imageProps[]>();
   const [name, setName] = useState<string>();
   const [description, setDescription] = useState<string>();
@@ -199,8 +199,8 @@ const Container: React.FC<ContainerProps> = () => {
         capacity: capacity,
         number: number,
         price: price,
-        image: image,
-        //! imageの引数が渡ってないエラーらしい optional 汚すぎるから見直したほうが良さそう
+        // image: image,
+        //! imageの引数が渡ってないエラーらしい
       });
 
       router.push('/');
@@ -230,7 +230,6 @@ const Container: React.FC<ContainerProps> = () => {
     onItemRegister,
   };
 
-  // name と inputName の ? 外しても送信はできる、↓ が undefinedで怒ってるだけ
   return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />;
 };
 
