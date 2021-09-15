@@ -2,7 +2,7 @@ import { initializeApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, serverTimestamp } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
-import { getStorage } from 'firebase/storage';
+// import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -20,5 +20,12 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const functions = getFunctions(app);
-export const storage = getStorage(app);
+// export const storage = getStorage(app);
 export const firebaseTimestamp = serverTimestamp();
+
+// 後で v9 対応したい
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/storage';
+
+firebase.initializeApp(firebaseConfig);
+export const storage = firebase.storage();

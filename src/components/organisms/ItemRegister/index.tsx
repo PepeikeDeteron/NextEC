@@ -8,26 +8,28 @@ import SelectMenu from '@/components/molecules/SelectMenu';
 import Spacer from '@/components/atoms/Spacer';
 import TextField from '@/components/molecules/TextField';
 import { categories } from '@/data/category';
+import { imageProps } from '@/models/types';
+import ImageArea from '@/components/organisms/ImageArea';
 
 type ContainerProps = {
-  name?: string;
-  description?: string;
-  category?: string;
-  capacity?: number;
-  number?: number;
-  price?: number;
-  setCategory?: any; // FIXME: 後で修正
-  inputName?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  inputDescription?: React.ChangeEventHandler<
+  image: imageProps[];
+  name: string;
+  description: string;
+  category: string;
+  capacity: number;
+  number: number;
+  price: number;
+  setImage: any;
+  setCategory: any; // FIXME: 後で修正
+  inputName: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  inputDescription: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
-  inputCapacity?: React.ChangeEventHandler<
+  inputCapacity: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
-  inputNumber?: React.ChangeEventHandler<
-    HTMLInputElement | HTMLTextAreaElement
-  >;
-  inputPrice?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  inputNumber: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  inputPrice: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onItemRegister?: () => void;
 };
 
@@ -35,15 +37,17 @@ type Props = {
   className?: string;
 } & ContainerProps;
 
-const Component: React.VFC<Props> = (props) => {
+const Component: React.FC<Props> = (props) => {
   const {
     className,
+    image,
     name,
     description,
     category,
     capacity,
     number,
     price,
+    setImage,
     setCategory,
     inputName,
     inputDescription,
@@ -56,7 +60,13 @@ const Component: React.VFC<Props> = (props) => {
   return (
     <section>
       <div className={className}>
-        <h2>商品の登録</h2>
+        <h2 className={'center'}>商品の登録</h2>
+        <ImageArea
+          images={image as imageProps[]}
+          setImages={setImage}
+          onUploadImage
+          onDeleteImage
+        />
         <TextField
           label="商品名"
           type="text"
@@ -114,7 +124,8 @@ const StyledComponent = styled(Component)`
   margin: 0 auto;
   padding: 5rem;
 
-  & .center {
+  .center {
+    color: #1565c0;
     margin: 0 auto;
     text-align: center;
   }
@@ -127,7 +138,8 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.VFC<ContainerProps> = () => {
+const Container: React.FC<ContainerProps> = () => {
+  const [image, setImage] = useState<imageProps[]>();
   const [name, setName] = useState<string>();
   const [description, setDescription] = useState<string>();
   const [category, setCategory] = useState<string>();
@@ -173,19 +185,6 @@ const Container: React.VFC<ContainerProps> = () => {
   const router = useRouter();
 
   const onItemRegister = async () => {
-    // TODO: ちゃんとしたバリデーションを後で実装する
-    if (
-      name === '' ||
-      description === '' ||
-      category === '' ||
-      capacity === undefined ||
-      number === undefined ||
-      price === undefined
-    ) {
-      alert('必須項目が未入力です。');
-      return false;
-    }
-
     try {
       const itemRef = collection(db, 'item');
       const uid = doc(itemRef).id;
@@ -200,6 +199,8 @@ const Container: React.VFC<ContainerProps> = () => {
         capacity: capacity,
         number: number,
         price: price,
+        image: image,
+        //! imageの引数が渡ってないエラーらしい optional 汚すぎるから見直したほうが良さそう
       });
 
       router.push('/');
@@ -212,12 +213,14 @@ const Container: React.VFC<ContainerProps> = () => {
   };
 
   const containerProps = {
+    image,
     name,
     description,
     category,
     capacity,
     number,
     price,
+    setImage,
     setCategory,
     inputName,
     inputDescription,
@@ -227,7 +230,8 @@ const Container: React.VFC<ContainerProps> = () => {
     onItemRegister,
   };
 
-  return <StyledComponent {...{ ...containerProps }} />;
+  // name と inputName の ? 外しても送信はできる、↓ が undefinedで怒ってるだけ
+  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />;
 };
 
 export default Container;
