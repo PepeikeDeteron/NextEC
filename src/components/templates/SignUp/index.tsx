@@ -15,21 +15,21 @@ import Spacer from '@/components/atoms/Spacer';
 import TextField from '@/components/molecules/TextField';
 
 type ContainerProps = {
-  username?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-  inputUsername?: React.ChangeEventHandler<
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  inputUsername: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
-  inputEmail?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  inputPassword?: React.ChangeEventHandler<
+  inputEmail: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  inputPassword: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
-  inputConfirmPassword?: React.ChangeEventHandler<
+  inputConfirmPassword: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
-  onSignUp?: () => void;
+  onSignUp: () => void;
 };
 
 type Props = {
@@ -111,7 +111,7 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.VFC<ContainerProps> = () => {
+const Container: React.VFC<Partial<ContainerProps>> = () => {
   const [username, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');

@@ -9,7 +9,7 @@ import RegisterButton from '@/components/molecules/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
 
 type ContainerProps = {
-  onSignOut?: () => void;
+  onSignOut: () => void;
 };
 
 type Props = {
@@ -35,7 +35,7 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.VFC<ContainerProps> = () => {
+const Container: React.VFC<Partial<ContainerProps>> = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
