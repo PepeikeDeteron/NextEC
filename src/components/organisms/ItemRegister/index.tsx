@@ -3,10 +3,10 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { collection, doc, setDoc } from '@firebase/firestore';
 import { db, firebaseTimestamp } from '@/lib/firebase';
-import RegisterButton from '@/components/atoms/RegisterButton';
-import SelectMenu from '@/components/atoms/SelectMenu';
+import RegisterButton from '@/components/molecules/RegisterButton';
+import SelectMenu from '@/components/molecules/SelectMenu';
 import Spacer from '@/components/atoms/Spacer';
-import TextField from '@/components/atoms/TextField';
+import TextField from '@/components/molecules/TextField';
 import { categories } from '@/data/category';
 
 type ContainerProps = {

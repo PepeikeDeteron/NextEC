@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { signOut as authSignOut } from '@firebase/auth';
 import { auth } from '@/lib/firebase';
 import { signOut } from '@/modules/user/userSlice';
-import RegisterButton from '@/components/atoms/RegisterButton';
+import RegisterButton from '@/components/molecules/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
 
 type ContainerProps = {

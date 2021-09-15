@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { sendPasswordResetEmail } from '@firebase/auth';
 import { auth } from '@/lib/firebase';
-import RegisterButton from '@/components/atoms/RegisterButton';
+import RegisterButton from '@/components/molecules/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
-import TextField from '@/components/atoms/TextField';
+import TextField from '@/components/molecules/TextField';
 
 type ContainerProps = {
   email?: string;

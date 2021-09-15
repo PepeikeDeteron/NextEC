@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots components/atoms/SelectMenu Default 1`] = `
+exports[`Storyshots components/molecules/SelectMenu Default 1`] = `
 <div
   className="MuiFormControl-root sc-gsTEea bYpZXr"
 >

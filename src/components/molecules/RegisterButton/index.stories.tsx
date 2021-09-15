@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import RegisterButton from '.';
 
 export default {
-  title: 'components/atoms/RegisterButton',
+  title: 'components/molecules/RegisterButton',
   components: RegisterButton,
   argTypes: {
     color: {

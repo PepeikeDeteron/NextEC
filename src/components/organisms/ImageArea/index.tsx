@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AddPhotoAlternate } from '@material-ui/icons';
-import IconButton from '@/components/atoms/IconButton';
+import IconButton from '@/components/molecules/IconButton';
 import { imageProps } from '@/models/types';
 
 type ContainerProps = {

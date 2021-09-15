@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import TextField from '.';
 
 export default {
-  title: 'components/atoms/TextField',
+  title: 'components/molecules/TextField',
   components: TextField,
   argTypes: {
     onClick: {
