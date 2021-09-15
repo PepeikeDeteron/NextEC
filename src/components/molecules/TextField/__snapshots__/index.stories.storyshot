@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots components/atoms/TextField Default 1`] = `
+exports[`Storyshots components/molecules/TextField Default 1`] = `
 <div
   className="MuiFormControl-root MuiTextField-root sc-dlfnuX MuiFormControl-marginDense MuiFormControl-fullWidth"
 >

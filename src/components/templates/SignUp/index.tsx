@@ -10,9 +10,9 @@ import {
 } from '@firebase/auth';
 import { collection, doc, setDoc } from '@firebase/firestore';
 import { auth, db, firebaseTimestamp } from '@/lib/firebase';
-import RegisterButton from '@/components/atoms/RegisterButton';
+import RegisterButton from '@/components/molecules/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
-import TextField from '@/components/atoms/TextField';
+import TextField from '@/components/molecules/TextField';
 
 type ContainerProps = {
   username?: string;

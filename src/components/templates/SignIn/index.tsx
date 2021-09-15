@@ -8,9 +8,9 @@ import { collection, doc, getDoc } from '@firebase/firestore';
 import { auth, db } from '@/lib/firebase';
 import { userProps } from '@/models/types';
 import { signIn } from '@/modules/user/userSlice';
-import RegisterButton from '@/components/atoms/RegisterButton';
+import RegisterButton from '@/components/molecules/RegisterButton';
 import Spacer from '@/components/atoms/Spacer';
-import TextField from '@/components/atoms/TextField';
+import TextField from '@/components/molecules/TextField';
 
 type ContainerProps = {
   email?: string;

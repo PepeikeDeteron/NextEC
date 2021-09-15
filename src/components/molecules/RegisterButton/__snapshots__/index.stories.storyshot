@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots components/atoms/RegisterButton Default 1`] = `
+exports[`Storyshots components/molecules/RegisterButton Default 1`] = `
 <button
   className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo MuiButton-containedPrimary"
   disabled={false}
@@ -26,7 +26,7 @@ exports[`Storyshots components/atoms/RegisterButton Default 1`] = `
 </button>
 `;
 
-exports[`Storyshots components/atoms/RegisterButton Primary 1`] = `
+exports[`Storyshots components/molecules/RegisterButton Primary 1`] = `
 <button
   className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo MuiButton-containedPrimary"
   disabled={false}
@@ -52,7 +52,7 @@ exports[`Storyshots components/atoms/RegisterButton Primary 1`] = `
 </button>
 `;
 
-exports[`Storyshots components/atoms/RegisterButton Secondary 1`] = `
+exports[`Storyshots components/molecules/RegisterButton Secondary 1`] = `
 <button
   className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo MuiButton-containedSecondary"
   disabled={false}

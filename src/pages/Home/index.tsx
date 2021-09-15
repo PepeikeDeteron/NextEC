@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import SignOut from '@/components/templates/SignOut';
+import SignOut from '@/components/organisms/SignOut';
 import Template from '@/components/templates/Home';
 
 const Home: React.VFC = () => {

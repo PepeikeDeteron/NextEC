@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import SelectMenu from '.';
 
 export default {
-  title: 'components/atoms/SelectMenu',
+  title: 'components/molecules/SelectMenu',
   components: SelectMenu,
   argTypes: {
     onClick: {

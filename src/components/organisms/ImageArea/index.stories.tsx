@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import ImageArea from '.';
 
 export default {
-  title: 'components/molecules/ImageArea',
+  title: 'components/organisms/ImageArea',
   components: ImageArea,
   argTypes: {
     onClick: {
