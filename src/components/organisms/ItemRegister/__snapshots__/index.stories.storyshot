@@ -3,9 +3,11 @@
 exports[`Storyshots components/organisms/ItemRegister Default 1`] = `
 <section>
   <div
-    className="sc-gKseQn kpOkqD"
+    className="sc-eCstlR cfajLm"
   >
-    <h2>
+    <h2
+      className="center"
+    >
       商品の登録
     </h2>
     <div
@@ -41,6 +43,7 @@ exports[`Storyshots components/organisms/ItemRegister Default 1`] = `
           required={true}
           rows={1}
           type="text"
+          value=""
         />
       </div>
     </div>
@@ -76,6 +79,7 @@ exports[`Storyshots components/organisms/ItemRegister Default 1`] = `
           onFocus={[Function]}
           required={true}
           rows={7}
+          value=""
         />
       </div>
     </div>
@@ -173,6 +177,7 @@ exports[`Storyshots components/organisms/ItemRegister Default 1`] = `
           required={true}
           rows={1}
           type="number"
+          value=""
         />
       </div>
     </div>
@@ -210,6 +215,7 @@ exports[`Storyshots components/organisms/ItemRegister Default 1`] = `
           required={true}
           rows={1}
           type="number"
+          value=""
         />
       </div>
     </div>
@@ -247,11 +253,12 @@ exports[`Storyshots components/organisms/ItemRegister Default 1`] = `
           required={true}
           rows={1}
           type="number"
+          value=""
         />
       </div>
     </div>
     <div
-      className="sc-jSgvzq"
+      className="sc-hKgJUU"
     >
       <span
         style={
