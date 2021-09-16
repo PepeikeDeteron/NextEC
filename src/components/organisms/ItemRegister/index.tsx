@@ -20,7 +20,7 @@ type ContainerProps = {
   number: number;
   price: number;
   setImages: React.Dispatch<React.SetStateAction<imageProps[]>>;
-  setCategory: any; // FIXME: 後で修正
+  setCategory: React.Dispatch<React.SetStateAction<string | undefined>>;
   inputName: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   inputDescription: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
@@ -79,7 +79,7 @@ const Component: React.FC<Props> = (props) => {
         <SelectMenu
           label="カテゴリー"
           value={category}
-          set={setCategory}
+          set={setCategory as (value: React.SetStateAction<string>) => void}
           options={categories}
         />
         <TextField

@@ -10,7 +10,7 @@ type ContainerProps = {
   images: imageProps[];
   setImages: React.Dispatch<React.SetStateAction<imageProps[]>>;
   onUploadImage?: (event: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
-  onDeleteImage?: any;
+  onDeleteImage?: (id: imageProps['id']) => Promise<false | void>;
 };
 
 type Props = {
@@ -29,7 +29,9 @@ const Component: React.VFC<Props> = (props) => {
               key={image.id}
               id={image.id}
               path={image.path}
-              onDelete={onDeleteImage}
+              onDelete={
+                onDeleteImage as (id: imageProps['id']) => Promise<false | void>
+              }
             />
           ))}
       </div>

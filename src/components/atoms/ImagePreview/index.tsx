@@ -5,7 +5,7 @@ import { imageProps } from '@/models/types';
 type ContainerProps = {
   id: imageProps['id'];
   path: imageProps['path'];
-  onDelete: (id: imageProps['id']) => void;
+  onDelete: (id: imageProps['id']) => Promise<unknown>;
 };
 
 type Props = {
