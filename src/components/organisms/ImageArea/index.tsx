@@ -23,7 +23,7 @@ const Component: React.VFC<Props> = (props) => {
   return (
     <>
       <div className={className}>
-        {images?.length > 0 &&
+        {images.length > 0 &&
           images.map((image) => (
             <ImagePreview
               key={image.id}

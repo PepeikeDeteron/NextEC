@@ -86,21 +86,21 @@ const Component: React.FC<Props> = (props) => {
           label="容量"
           type="number"
           inputProps={{ min: 0 }}
-          value={capacity}
+          value={capacity || ''}
           onChange={inputCapacity}
         />
         <TextField
           label="個数"
           type="number"
           inputProps={{ min: 0 }}
-          value={number}
+          value={number || ''}
           onChange={inputNumber}
         />
         <TextField
           label="価格"
           type="number"
           inputProps={{ min: 0 }}
-          value={price}
+          value={price || ''}
           onChange={inputPrice}
         />
         <Spacer height={16} />
@@ -134,10 +134,10 @@ const StyledComponent = styled(Component)`
 `;
 
 const Container: React.FC<Partial<ContainerProps>> = () => {
-  const [images, setImages] = useState<imageProps[]>();
-  const [name, setName] = useState<string>();
-  const [description, setDescription] = useState<string>();
-  const [category, setCategory] = useState<string>();
+  const [images, setImages] = useState<imageProps[]>([]);
+  const [name, setName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [category, setCategory] = useState<string>('');
   const [capacity, setCapacity] = useState<number>();
   const [number, setNumber] = useState<number>();
   const [price, setPrice] = useState<number>();
