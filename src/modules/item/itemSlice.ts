@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { firebaseTimestamp } from '@/lib/firebase';
 
 type State = {
-  item: unknown;
+  item: {
+    list: string[] | number[] | typeof firebaseTimestamp[];
+  };
 };
 
 const initialState: State = {

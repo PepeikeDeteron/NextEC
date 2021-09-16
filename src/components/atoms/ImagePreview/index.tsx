@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { imageProps } from '@/models/types';
 
 type ContainerProps = {
-  image: imageProps;
-  onDelete: (id: imageProps['id']) => Promise<unknown>;
+  id: imageProps['id'];
+  path: imageProps['path'];
+  onDelete: (id: imageProps['id']) => void;
 };
 
 type Props = {
@@ -12,11 +13,9 @@ type Props = {
 } & ContainerProps;
 
 const Component: React.VFC<Props> = (props) => {
-  const { image, onDelete } = props;
-
   return (
-    <button className="image" onClick={() => onDelete(image.id)}>
-      <img src={image.path} alt="商品画像" />
+    <button className="image" onClick={() => props.onDelete(props.id)}>
+      <img src={props.path} alt="商品画像" />
     </button>
   );
 };
