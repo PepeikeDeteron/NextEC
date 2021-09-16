@@ -3,23 +3,23 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { collection, doc, setDoc } from '@firebase/firestore';
 import { db, firebaseTimestamp } from '@/lib/firebase';
+import Spacer from '@/components/atoms/Spacer';
 import RegisterButton from '@/components/molecules/RegisterButton';
 import SelectMenu from '@/components/molecules/SelectMenu';
-import Spacer from '@/components/atoms/Spacer';
 import TextField from '@/components/molecules/TextField';
+import ImageArea from '@/components/organisms/ImageArea';
 import { categories } from '@/data/category';
 import { imageProps } from '@/models/types';
-import ImageArea from '@/components/organisms/ImageArea';
 
 type ContainerProps = {
-  image: imageProps[];
+  images: imageProps[];
   name: string;
   description: string;
   category: string;
   capacity: number;
   number: number;
   price: number;
-  setImage: any;
+  setImages: React.Dispatch<React.SetStateAction<imageProps[]>>;
   setCategory: any; // FIXME: 後で修正
   inputName: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   inputDescription: React.ChangeEventHandler<
@@ -30,7 +30,7 @@ type ContainerProps = {
   >;
   inputNumber: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   inputPrice: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  onItemRegister?: () => void;
+  onItemRegister: () => void;
 };
 
 type Props = {
@@ -40,14 +40,14 @@ type Props = {
 const Component: React.FC<Props> = (props) => {
   const {
     className,
-    image,
+    images,
     name,
     description,
     category,
     capacity,
     number,
     price,
-    setImage,
+    setImages,
     setCategory,
     inputName,
     inputDescription,
@@ -61,12 +61,7 @@ const Component: React.FC<Props> = (props) => {
     <section>
       <div className={className}>
         <h2 className={'center'}>商品の登録</h2>
-        <ImageArea
-          images={image as imageProps[]}
-          setImages={setImage}
-          onUploadImage
-          onDeleteImage
-        />
+        <ImageArea images={images} setImages={setImages} />
         <TextField
           label="商品名"
           type="text"
@@ -139,7 +134,7 @@ const StyledComponent = styled(Component)`
 `;
 
 const Container: React.FC<Partial<ContainerProps>> = () => {
-  const [image, setImage] = useState<imageProps[]>();
+  const [images, setImages] = useState<imageProps[]>();
   const [name, setName] = useState<string>();
   const [description, setDescription] = useState<string>();
   const [category, setCategory] = useState<string>();
@@ -193,14 +188,13 @@ const Container: React.FC<Partial<ContainerProps>> = () => {
       setDoc(doc(itemRef, uid), {
         created_at: timestamp,
         uid: uid,
+        image: images,
         name: name,
         description: description,
         category: category,
         capacity: capacity,
         number: number,
         price: price,
-        // image: image,
-        //! imageの引数が渡ってないエラーらしい
       });
 
       router.push('/');
@@ -213,14 +207,14 @@ const Container: React.FC<Partial<ContainerProps>> = () => {
   };
 
   const containerProps = {
-    image,
+    images,
     name,
     description,
     category,
     capacity,
     number,
     price,
-    setImage,
+    setImages,
     setCategory,
     inputName,
     inputDescription,
