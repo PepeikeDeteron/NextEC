@@ -18,11 +18,11 @@ type Props = {
 } & ContainerProps;
 
 const Component: React.VFC<Props> = (props) => {
-  const { images, onUploadImage, onDeleteImage } = props;
+  const { className, images, onUploadImage, onDeleteImage } = props;
 
   return (
     <>
-      <div className="image-area">
+      <div className={className}>
         {images?.length > 0 &&
           images.map((image) => (
             <ImagePreview
@@ -48,15 +48,9 @@ const Component: React.VFC<Props> = (props) => {
 };
 
 const StyledComponent = styled(Component)`
-  .image-area {
-    display: flex;
-    flex-flow: wrap;
-  }
-
-  .image-area > .image {
-    margin: 5rem;
-    width: calc(50% - 1rem);
-  }]
+  display: flex;
+  flex-flow: row wrap;
+  margin: 2rem;
 `;
 
 const Container: React.VFC<ContainerProps> = (props) => {
