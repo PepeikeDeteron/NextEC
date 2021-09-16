@@ -43,6 +43,7 @@ const Component: React.VFC<Props> = (props) => {
           id="image"
           type="file"
           accept="image/*"
+          multiple
           onChange={onUploadImage}
         />
       </IconButton>
@@ -89,7 +90,8 @@ const Container: React.VFC<ContainerProps> = (props) => {
         // アップロードが完了したら、画像の URL を取得
         const imageURL = await imagePut.ref.getDownloadURL();
 
-        setImages([
+        setImages((prevState) => [
+          ...prevState,
           {
             id,
             path: imageURL,
