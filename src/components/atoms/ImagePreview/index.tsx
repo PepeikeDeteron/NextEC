@@ -5,7 +5,7 @@ import { imageProps } from '@/models/types';
 type ContainerProps = {
   id: imageProps['id'];
   path: imageProps['path'];
-  onDelete: (id: imageProps['id']) => void;
+  onDelete: (id: imageProps['id']) => Promise<unknown>;
 };
 
 type Props = {
@@ -27,11 +27,22 @@ const StyledComponent = styled(Component)`
   overflow: hidden;
   width: 100%;
 
+  // 画像を正方形に切り抜く
+  ::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+
   > img {
+    position: absolute;
     object-fit: cover;
     object-position: center;
+    display: block;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 `;
 

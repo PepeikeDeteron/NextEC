@@ -10,7 +10,7 @@ type ContainerProps = {
   images: imageProps[];
   setImages: React.Dispatch<React.SetStateAction<imageProps[]>>;
   onUploadImage?: (event: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
-  onDeleteImage?: any;
+  onDeleteImage?: (id: imageProps['id']) => Promise<false | void>;
 };
 
 type Props = {
@@ -23,13 +23,15 @@ const Component: React.VFC<Props> = (props) => {
   return (
     <>
       <div className={className}>
-        {images?.length > 0 &&
+        {images.length > 0 &&
           images.map((image) => (
             <ImagePreview
               key={image.id}
               id={image.id}
               path={image.path}
-              onDelete={onDeleteImage}
+              onDelete={
+                onDeleteImage as (id: imageProps['id']) => Promise<false | void>
+              }
             />
           ))}
       </div>
@@ -40,6 +42,8 @@ const Component: React.VFC<Props> = (props) => {
           className="input"
           id="image"
           type="file"
+          accept="image/*"
+          multiple
           onChange={onUploadImage}
         />
       </IconButton>
@@ -50,7 +54,7 @@ const Component: React.VFC<Props> = (props) => {
 const StyledComponent = styled(Component)`
   display: flex;
   flex-flow: row wrap;
-  margin: 2rem;
+  margin: 1.5rem;
 `;
 
 const Container: React.VFC<ContainerProps> = (props) => {
@@ -69,6 +73,8 @@ const Container: React.VFC<ContainerProps> = (props) => {
     async (event: React.ChangeEvent<HTMLInputElement>) => {
       // 読み込んだ画像ファイルをバイナリデータに変換
       const imageFile = event.target.files;
+      if (!imageFile) return;
+
       const blobImage = new Blob(imageFile as unknown as BlobPart[], {
         type: 'image/jpeg',
       });
@@ -84,7 +90,8 @@ const Container: React.VFC<ContainerProps> = (props) => {
         // アップロードが完了したら、画像の URL を取得
         const imageURL = await imagePut.ref.getDownloadURL();
 
-        setImages([
+        setImages((prevState) => [
+          ...prevState,
           {
             id,
             path: imageURL,

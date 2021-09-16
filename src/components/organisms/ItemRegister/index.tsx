@@ -7,7 +7,7 @@ import Spacer from '@/components/atoms/Spacer';
 import RegisterButton from '@/components/molecules/RegisterButton';
 import SelectMenu from '@/components/molecules/SelectMenu';
 import TextField from '@/components/molecules/TextField';
-import ImageArea from '@/components/organisms/ImageArea';
+// import ImageArea from '@/components/organisms/ImageArea';
 import { categories } from '@/data/category';
 import { imageProps } from '@/models/types';
 
@@ -20,7 +20,7 @@ type ContainerProps = {
   number: number;
   price: number;
   setImages: React.Dispatch<React.SetStateAction<imageProps[]>>;
-  setCategory: any; // FIXME: 後で修正
+  setCategory: any; // FIXME
   inputName: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   inputDescription: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
@@ -40,14 +40,14 @@ type Props = {
 const Component: React.FC<Props> = (props) => {
   const {
     className,
-    images,
+    // images,
     name,
     description,
     category,
     capacity,
     number,
     price,
-    setImages,
+    // setImages,
     setCategory,
     inputName,
     inputDescription,
@@ -61,7 +61,8 @@ const Component: React.FC<Props> = (props) => {
     <section>
       <div className={className}>
         <h2 className={'center'}>商品の登録</h2>
-        <ImageArea images={images} setImages={setImages} />
+        {/* FIXME: "Element type is invalid: expected a string" テストが通らない*/}
+        {/* <ImageArea images={images} setImages={setImages} /> */}
         <TextField
           label="商品名"
           type="text"
@@ -86,21 +87,21 @@ const Component: React.FC<Props> = (props) => {
           label="容量"
           type="number"
           inputProps={{ min: 0 }}
-          value={capacity}
+          value={capacity || ''}
           onChange={inputCapacity}
         />
         <TextField
           label="個数"
           type="number"
           inputProps={{ min: 0 }}
-          value={number}
+          value={number || ''}
           onChange={inputNumber}
         />
         <TextField
           label="価格"
           type="number"
           inputProps={{ min: 0 }}
-          value={price}
+          value={price || ''}
           onChange={inputPrice}
         />
         <Spacer height={16} />
@@ -134,10 +135,10 @@ const StyledComponent = styled(Component)`
 `;
 
 const Container: React.FC<Partial<ContainerProps>> = () => {
-  const [images, setImages] = useState<imageProps[]>();
-  const [name, setName] = useState<string>();
-  const [description, setDescription] = useState<string>();
-  const [category, setCategory] = useState<string>();
+  const [images, setImages] = useState<imageProps[]>([]);
+  const [name, setName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [category, setCategory] = useState<string>('');
   const [capacity, setCapacity] = useState<number>();
   const [number, setNumber] = useState<number>();
   const [price, setPrice] = useState<number>();
