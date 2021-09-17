@@ -3,7 +3,7 @@ import { initializeApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, serverTimestamp } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
-// import { getStorage } from 'firebase/storage';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -21,14 +21,14 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const functions = getFunctions(app);
-// export const storage = getStorage(app);
+export const storage = getStorage(app);
 export const firebaseTimestamp = serverTimestamp();
 
 // v8 -------------------------------------------------------------------------
 import firebase from 'firebase/compat/app';
-import 'firebase/compat/database';
+import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 firebase.initializeApp(firebaseConfig);
-export const storage = firebase.storage();
-export const database = firebase.firestore();
+export const storageV8 = firebase.storage();
+export const dbV8 = firebase.firestore();

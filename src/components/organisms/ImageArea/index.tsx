@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate';
-import { storage } from '@/lib/firebase';
+import { storageV8 } from '@/lib/firebase';
 import ImagePreview from '@/components/atoms/ImagePreview';
 import IconButton from '@/components/molecules/IconButton';
 import { imageProps } from '@/models/types';
@@ -83,7 +83,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
       const id = generateId();
 
       // 画像を Cloud Storage にアップロード
-      const imageRef = storage.ref('image').child(id);
+      const imageRef = storageV8.ref('image').child(id);
       const imagePut = await imageRef.put(blobImage);
 
       try {
@@ -115,7 +115,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
       // クリックした画像は残し、それ以外は Cloud Storage から削除
       const newImageFile = images.filter((image) => image.id !== id);
       setImages(newImageFile);
-      return storage.ref('image').child(id).delete();
+      return storageV8.ref('image').child(id).delete();
     },
     [images, setImages]
   );

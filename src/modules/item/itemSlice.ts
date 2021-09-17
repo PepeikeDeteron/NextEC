@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { database } from '@/lib/firebase';
+import { dbV8 } from '@/lib/firebase';
 import { itemProps } from '@/models/types';
 
 type State = {
@@ -29,12 +29,12 @@ export const { items } = itemSlice.actions;
 
 // ----------------------------------------------------------------------------
 
-const dispatch = useDispatch();
-
 // 登録されている商品を取得する
 export const fetchItems = async (): Promise<void> => {
+  const dispatch = useDispatch();
+
   const itemList: itemProps[] = [];
-  const itemRef = database.collection('item');
+  const itemRef = dbV8.collection('item');
 
   try {
     // DB から取得した item のデータを作成日時に対する降順で整理
