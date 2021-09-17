@@ -11,3 +11,13 @@ export type imageProps = {
   id: string;
   path: string;
 };
+
+export type itemProps = {
+  images: imageProps[];
+  name: string;
+  description: string;
+  category: string;
+  capacity: number;
+  number: number;
+  price: number;
+};

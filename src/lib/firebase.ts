@@ -1,3 +1,4 @@
+// v9 -------------------------------------------------------------------------
 import { initializeApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, serverTimestamp } from 'firebase/firestore';
@@ -23,9 +24,11 @@ export const functions = getFunctions(app);
 // export const storage = getStorage(app);
 export const firebaseTimestamp = serverTimestamp();
 
-// 後で v9 対応したい
+// v8 -------------------------------------------------------------------------
 import firebase from 'firebase/compat/app';
+import 'firebase/compat/database';
 import 'firebase/compat/storage';
 
 firebase.initializeApp(firebaseConfig);
 export const storage = firebase.storage();
+export const database = firebase.firestore();
