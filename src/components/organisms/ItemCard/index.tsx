@@ -4,28 +4,40 @@ import {
   Card,
   CardProps,
   CardContent,
+  CardContentProps,
   CardMedia,
+  CardMediaProps,
   Typography,
+  TypographyProps,
 } from '@material-ui/core';
+import NoImage from '../../../assets/no-image.jpg';
+import { imageProps, itemProps } from '@/models/types';
 
-type ContainerProps = CardProps;
+type ContainerProps = CardProps &
+  CardContentProps &
+  Omit<CardMediaProps, 'image'> &
+  Omit<TypographyProps, 'variant'> & {
+    images: imageProps[];
+    name: itemProps['name'];
+    price: itemProps['price'] | string;
+  };
 
 type Props = {
   className?: string;
 } & ContainerProps;
 
 const Component: React.VFC<Props> = (props) => {
-  const { className } = props;
+  const { className, images, name, price } = props;
 
   return (
     <Card className={className}>
-      <CardMedia className="media" title="" />
+      <CardMedia className="media" image={images[0].path} title="" />
       <CardContent className="content">
-        <Typography className="item" color="textSecondary">
-          商品名 商品名 商品名
+        <Typography className="item" variant="caption" color="textSecondary">
+          {name}
         </Typography>
         <Typography className="price" color="error">
-          ¥ 00000
+          ¥ {price}
         </Typography>
       </CardContent>
     </Card>
@@ -71,7 +83,12 @@ const StyledComponent = styled(Component)`
 `;
 
 const Container: React.VFC<ContainerProps> = (props) => {
-  return <StyledComponent {...props} />;
+  const images = props.images.length > 0 ? props.images : [{ path: NoImage }];
+  const price = props.price.toLocaleString(); // 3桁区切りの数値に変換
+
+  const containerProps = { images, price };
+
+  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />;
 };
 
 export default Container;

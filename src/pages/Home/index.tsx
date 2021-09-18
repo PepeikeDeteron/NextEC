@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import SignOut from '@/components/organisms/SignOut';
 import Template from '@/components/templates/Home';
+import SignOut from '@/components/organisms/SignOut';
 
 const Home: React.VFC = () => {
   return (

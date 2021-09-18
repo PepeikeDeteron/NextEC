@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
+import { Dispatch } from 'redux';
 import { dbV8 } from '@/lib/firebase';
 import { itemProps } from '@/models/types';
 
@@ -20,7 +20,10 @@ export const itemSlice = createSlice({
   initialState,
   reducers: {
     items: (state: State, action: PayloadAction<itemProps[]>) => {
-      state.item.list = [...action.payload];
+      return {
+        ...state,
+        list: [...action.payload],
+      };
     },
   },
 });
@@ -30,27 +33,18 @@ export const { items } = itemSlice.actions;
 // ----------------------------------------------------------------------------
 
 // 登録されている商品を取得する
-export const fetchItems = async (): Promise<void> => {
-  const dispatch = useDispatch();
+export const fetchItems = () => {
+  return async (dispatch: Dispatch): Promise<void> => {
+    // DB から取得した item のデータを登録日時に対する降順で整理
+    const itemRef = dbV8.collection('item').orderBy('created_at', 'desc');
 
-  const itemList: itemProps[] = [];
-  const itemRef = dbV8.collection('item');
+    itemRef.get().then((snapshots) => {
+      const itemList: itemProps[] = [];
 
-  try {
-    // DB から取得した item のデータを作成日時に対する降順で整理
-    const query = itemRef.orderBy('created_at', 'desc');
-    const snapshots = await query.get();
-
-    snapshots.forEach((snapshot) => {
-      const item = snapshot.data();
-      itemList.push(item as itemProps);
+      snapshots.forEach((snapshot) => {
+        itemList.push(snapshot.data() as itemProps);
+      });
+      dispatch(items(itemList));
     });
-
-    dispatch(items(itemList));
-  } catch (error) {
-    if (error instanceof Error) {
-      alert('商品のデータを取得できませんでした。');
-      console.error(error.message);
-    }
-  }
+  };
 };
