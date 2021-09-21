@@ -1,36 +1,36 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Button, ButtonProps } from '@material-ui/core';
-import { ColorProps } from '@/models/types';
+import React from 'react'
+import styled from 'styled-components'
+import { Button, ButtonProps } from '@material-ui/core'
+import { ColorProps } from '@/models/types'
 
 type ContainerProps = Omit<ButtonProps, 'variant'> & {
-  color?: ColorProps;
-  label: string;
-};
+  color?: ColorProps
+  label: string
+}
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { color = 'primary', label, ...restProps } = props;
+  const { color = 'primary', label, ...restProps } = props
 
   return (
     <Button variant="contained" color={color} {...restProps}>
       {label}
     </Button>
-  );
-};
+  )
+}
 
 const StyledComponent = styled(Component)`
   width: 20rem;
   height: 4rem;
   font-size: 1.5rem;
   color: white;
-`;
+`
 
 const Container: React.VFC<ContainerProps> = (props) => {
-  return <StyledComponent {...props} />;
-};
+  return <StyledComponent {...props} />
+}
 
-export default React.memo(Container);
+export default React.memo(Container)

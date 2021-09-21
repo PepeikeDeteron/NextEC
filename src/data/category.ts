@@ -1,7 +1,7 @@
 export type CategoryProps = {
-  type: string;
-  name: string;
-};
+  type: string
+  name: string
+}
 
 export const categories: CategoryProps[] = [
   {
@@ -29,4 +29,4 @@ export const categories: CategoryProps[] = [
     name: '洋酒',
     // ウィスキー・ブランデー・スピリッツ・リキュール・チューハイ・カクテル etc.
   },
-];
+]

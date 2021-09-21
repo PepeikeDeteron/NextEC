@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 import {
   Card,
   CardProps,
@@ -9,25 +9,25 @@ import {
   CardMediaProps,
   Typography,
   TypographyProps,
-} from '@material-ui/core';
-import NoImage from '../../../assets/no-image.jpg';
-import { imageProps, itemProps } from '@/models/types';
+} from '@material-ui/core'
+import NoImage from '../../../assets/no-image.jpg'
+import { imageProps, itemProps } from '@/models/types'
 
 type ContainerProps = CardProps &
   CardContentProps &
   Omit<CardMediaProps, 'image'> &
   Omit<TypographyProps, 'variant'> & {
-    images: imageProps[];
-    name: itemProps['name'];
-    price: itemProps['price'] | string;
-  };
+    images: imageProps[]
+    name: itemProps['name']
+    price: itemProps['price'] | string
+  }
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, images, name, price } = props;
+  const { className, images, name, price } = props
 
   return (
     <Card className={className}>
@@ -41,8 +41,8 @@ const Component: React.VFC<Props> = (props) => {
         </Typography>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
 const StyledComponent = styled(Component)`
   // PC 3カラム
@@ -80,15 +80,15 @@ const StyledComponent = styled(Component)`
     width: calc(100% / 1 - 30px);
     min-height: 35rem;
   }
-`;
+`
 
 const Container: React.VFC<ContainerProps> = (props) => {
-  const images = props.images.length > 0 ? props.images : [{ path: NoImage }];
-  const price = props.price.toLocaleString(); // 3桁区切りの数値に変換
+  const images = props.images.length > 0 ? props.images : [{ path: NoImage }]
+  const price = props.price.toLocaleString() // 3桁区切りの数値に変換
 
-  const containerProps = { images, price };
+  const containerProps = { images, price }
 
-  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />;
-};
+  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />
+}
 
-export default Container;
+export default Container

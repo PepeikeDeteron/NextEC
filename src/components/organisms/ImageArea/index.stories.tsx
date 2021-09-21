@@ -1,6 +1,6 @@
-import React, { ComponentProps } from 'react';
-import { Meta, Story } from '@storybook/react';
-import ImageArea from '.';
+import React, { ComponentProps } from 'react'
+import { Meta, Story } from '@storybook/react'
+import ImageArea from '.'
 
 export default {
   title: 'components/organisms/ImageArea',
@@ -10,10 +10,10 @@ export default {
       action: 'clicked',
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story<ComponentProps<typeof ImageArea>> = (props) => (
   <ImageArea {...props} />
-);
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})

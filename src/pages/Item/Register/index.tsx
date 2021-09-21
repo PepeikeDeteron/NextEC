@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import Template from '@/components/organisms/ItemRegister';
+import Head from 'next/head'
+import Template from '@/components/organisms/ItemRegister'
 
 const ItemRegister: React.VFC = () => {
   return (
@@ -9,7 +9,7 @@ const ItemRegister: React.VFC = () => {
       </Head>
       <Template />
     </>
-  );
-};
+  )
+}
 
-export default ItemRegister;
+export default ItemRegister

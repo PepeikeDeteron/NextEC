@@ -1,41 +1,41 @@
-import React, { useState, useCallback } from 'react';
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import { collection, doc, setDoc } from '@firebase/firestore';
-import { db, firebaseTimestamp } from '@/lib/firebase';
-import Spacer from '@/components/atoms/Spacer';
-import RegisterButton from '@/components/molecules/RegisterButton';
-import SelectMenu from '@/components/molecules/SelectMenu';
-import TextField from '@/components/molecules/TextField';
+import React, { useState, useCallback } from 'react'
+import { useRouter } from 'next/router'
+import styled from 'styled-components'
+import { collection, doc, setDoc } from '@firebase/firestore'
+import { db, firebaseTimestamp } from '@/lib/firebase'
+import Spacer from '@/components/atoms/Spacer'
+import RegisterButton from '@/components/molecules/RegisterButton'
+import SelectMenu from '@/components/molecules/SelectMenu'
+import TextField from '@/components/molecules/TextField'
 // import ImageArea from '@/components/organisms/ImageArea';
-import { categories } from '@/data/category';
-import { imageProps } from '@/models/types';
+import { categories } from '@/data/category'
+import { imageProps } from '@/models/types'
 
 type ContainerProps = {
-  images: imageProps[];
-  name: string;
-  description: string;
-  category: string;
-  capacity: number;
-  number: number;
-  price: number;
-  setImages: React.Dispatch<React.SetStateAction<imageProps[]>>;
-  setCategory: any; // FIXME
-  inputName: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  images: imageProps[]
+  name: string
+  description: string
+  category: string
+  capacity: number
+  number: number
+  price: number
+  setImages: React.Dispatch<React.SetStateAction<imageProps[]>>
+  setCategory: any // FIXME
+  inputName: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
   inputDescription: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
-  >;
+  >
   inputCapacity: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
-  >;
-  inputNumber: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  inputPrice: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  onItemRegister: () => void;
-};
+  >
+  inputNumber: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  inputPrice: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  onItemRegister: () => void
+}
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.FC<Props> = (props) => {
   const {
@@ -55,7 +55,7 @@ const Component: React.FC<Props> = (props) => {
     inputNumber,
     inputPrice,
     onItemRegister,
-  } = props;
+  } = props
 
   return (
     <section>
@@ -110,8 +110,8 @@ const Component: React.FC<Props> = (props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 const StyledComponent = styled(Component)`
   max-width: 100vw;
@@ -132,59 +132,59 @@ const StyledComponent = styled(Component)`
     margin: 0;
     -moz-appearance: textfield;
   }
-`;
+`
 
 const Container: React.FC<Partial<ContainerProps>> = () => {
-  const [images, setImages] = useState<imageProps[]>([]);
-  const [name, setName] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
-  const [capacity, setCapacity] = useState<number>();
-  const [number, setNumber] = useState<number>();
-  const [price, setPrice] = useState<number>();
+  const [images, setImages] = useState<imageProps[]>([])
+  const [name, setName] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+  const [category, setCategory] = useState<string>('')
+  const [capacity, setCapacity] = useState<number>()
+  const [number, setNumber] = useState<number>()
+  const [price, setPrice] = useState<number>()
 
   const inputName = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setName(event.target.value);
+      setName(event.target.value)
     },
     [setName]
-  );
+  )
 
   const inputDescription = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setDescription(event.target.value);
+      setDescription(event.target.value)
     },
     [setDescription]
-  );
+  )
 
   const inputCapacity = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setCapacity(Number(event.target.value));
+      setCapacity(Number(event.target.value))
     },
     [setCapacity]
-  );
+  )
 
   const inputNumber = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setNumber(Number(event.target.value));
+      setNumber(Number(event.target.value))
     },
     [setNumber]
-  );
+  )
 
   const inputPrice = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setPrice(Number(event.target.value));
+      setPrice(Number(event.target.value))
     },
     [setPrice]
-  );
+  )
 
-  const router = useRouter();
+  const router = useRouter()
 
   const onItemRegister = async () => {
     try {
-      const itemRef = collection(db, 'item');
-      const uid = doc(itemRef).id;
-      const timestamp = firebaseTimestamp;
+      const itemRef = collection(db, 'item')
+      const uid = doc(itemRef).id
+      const timestamp = firebaseTimestamp
 
       setDoc(doc(itemRef, uid), {
         created_at: timestamp,
@@ -196,16 +196,16 @@ const Container: React.FC<Partial<ContainerProps>> = () => {
         capacity: capacity,
         number: number,
         price: price,
-      });
+      })
 
-      router.push('/');
+      router.push('/')
     } catch (error) {
       if (error instanceof Error) {
-        alert('商品の登録に失敗しました。もう一度お試しください。');
-        console.error(error.message);
+        alert('商品の登録に失敗しました。もう一度お試しください。')
+        console.error(error.message)
       }
     }
-  };
+  }
 
   const containerProps = {
     images,
@@ -223,9 +223,9 @@ const Container: React.FC<Partial<ContainerProps>> = () => {
     inputNumber,
     inputPrice,
     onItemRegister,
-  };
+  }
 
-  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />;
-};
+  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />
+}
 
-export default Container;
+export default Container

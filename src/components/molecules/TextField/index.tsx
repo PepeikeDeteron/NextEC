@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import { TextField, TextFieldProps } from '@material-ui/core';
+import React from 'react'
+import styled from 'styled-components'
+import { TextField, TextFieldProps } from '@material-ui/core'
 
 type ContainerProps = Omit<
   TextFieldProps,
   'margin' | 'autoComplete' | 'variant'
->;
+>
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
   const {
@@ -18,7 +18,7 @@ const Component: React.VFC<Props> = (props) => {
     required = true,
     rows = 1,
     ...restProps
-  } = props;
+  } = props
 
   return (
     <TextField
@@ -31,13 +31,13 @@ const Component: React.VFC<Props> = (props) => {
       rows={rows}
       {...restProps}
     />
-  );
-};
+  )
+}
 
-const StyledComponent = styled(Component)``;
+const StyledComponent = styled(Component)``
 
 const Container: React.VFC<ContainerProps> = (props) => {
-  return <StyledComponent {...props} />;
-};
+  return <StyledComponent {...props} />
+}
 
-export default React.memo(Container);
+export default React.memo(Container)

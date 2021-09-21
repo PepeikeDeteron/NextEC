@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import Template from '@/components/templates/SignUp';
+import Head from 'next/head'
+import Template from '@/components/templates/SignUp'
 
 const SignUp: React.VFC = () => {
   return (
@@ -9,7 +9,7 @@ const SignUp: React.VFC = () => {
       </Head>
       <Template />
     </>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

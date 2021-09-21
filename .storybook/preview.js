@@ -1,5 +1,5 @@
-import { addDecorator } from '@storybook/react';
-import stylesDecorator from './stylesDecorator';
+import { addDecorator } from '@storybook/react'
+import stylesDecorator from './stylesDecorator'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -9,6 +9,6 @@ export const parameters = {
       date: /Date$/,
     },
   },
-};
+}
 
-addDecorator(stylesDecorator);
+addDecorator(stylesDecorator)
