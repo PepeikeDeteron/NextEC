@@ -1,6 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { userSlice } from '@/modules/user/userSlice';
-import { itemSlice } from '@/modules/item/itemSlice';
+import { configureStore } from '@reduxjs/toolkit'
+import { userSlice } from '@/modules/user/userSlice'
+import { itemSlice } from '@/modules/item/itemSlice'
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +18,6 @@ export const store = configureStore({
         ignoredActionPaths: ['payload.0.created_at'],
       },
     }),
-});
+})
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>

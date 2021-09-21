@@ -1,25 +1,25 @@
-import React, { useState, useCallback } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import { sendPasswordResetEmail } from '@firebase/auth';
-import { auth } from '@/lib/firebase';
-import RegisterButton from '@/components/molecules/RegisterButton';
-import Spacer from '@/components/atoms/Spacer';
-import TextField from '@/components/molecules/TextField';
+import React, { useState, useCallback } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import styled from 'styled-components'
+import { sendPasswordResetEmail } from '@firebase/auth'
+import { auth } from '@/lib/firebase'
+import RegisterButton from '@/components/molecules/RegisterButton'
+import Spacer from '@/components/atoms/Spacer'
+import TextField from '@/components/molecules/TextField'
 
 type ContainerProps = {
-  email: string;
-  inputEmail: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  onResetPassword: () => void;
-};
+  email: string
+  inputEmail: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  onResetPassword: () => void
+}
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, email, inputEmail, onResetPassword } = props;
+  const { className, email, inputEmail, onResetPassword } = props
 
   return (
     <div className={className}>
@@ -41,8 +41,8 @@ const Component: React.VFC<Props> = (props) => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const StyledComponent = styled(Component)`
   max-width: 100vw;
@@ -62,47 +62,47 @@ const StyledComponent = styled(Component)`
     margin: 2rem auto 0 auto;
     text-align: center;
   }
-`;
+`
 
 const Container: React.VFC<Partial<ContainerProps>> = () => {
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>('')
 
   const inputEmail = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setEmail(event.target.value);
+      setEmail(event.target.value)
     },
     [setEmail]
-  );
+  )
 
-  const router = useRouter();
+  const router = useRouter()
 
   const onResetPassword = async () => {
     try {
       // TODO: ちゃんとしたバリデーションを後で実装する
       if (email === '') {
-        alert('必須項目が未入力です。');
-        return false;
+        alert('必須項目が未入力です。')
+        return false
       } else {
-        await sendPasswordResetEmail(auth, email);
-        alert('パスワードリセット用のメールを送信しました。');
+        await sendPasswordResetEmail(auth, email)
+        alert('パスワードリセット用のメールを送信しました。')
 
-        router.push('/SignIn');
+        router.push('/SignIn')
       }
     } catch (error) {
       if (error instanceof Error) {
-        alert('登録されていないメールアドレスです。もう一度お試しください。');
-        console.error(error.message);
+        alert('登録されていないメールアドレスです。もう一度お試しください。')
+        console.error(error.message)
       }
     }
-  };
+  }
 
   const containerProps = {
     email,
     inputEmail,
     onResetPassword,
-  };
+  }
 
-  return <StyledComponent {...{ ...containerProps }} />;
-};
+  return <StyledComponent {...{ ...containerProps }} />
+}
 
-export default Container;
+export default Container

@@ -1,26 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
-import { imageProps } from '@/models/types';
+import React from 'react'
+import styled from 'styled-components'
+import { imageProps } from '@/models/types'
 
 type ContainerProps = {
-  id: imageProps['id'];
-  path: imageProps['path'];
-  onDelete: (id: imageProps['id']) => Promise<unknown>;
-};
+  id: imageProps['id']
+  path: imageProps['path']
+  onDelete: (id: imageProps['id']) => Promise<unknown>
+}
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, id, path, onDelete } = props;
+  const { className, id, path, onDelete } = props
 
   return (
     <div className={className} onClick={() => onDelete(id)}>
       <img src={path} alt="商品画像" />
     </div>
-  );
-};
+  )
+}
 
 const StyledComponent = styled(Component)`
   position: relative;
@@ -44,10 +44,10 @@ const StyledComponent = styled(Component)`
     width: 100%;
     height: 100%;
   }
-`;
+`
 
 const Container: React.VFC<ContainerProps> = (props) => {
-  return <StyledComponent {...props} />;
-};
+  return <StyledComponent {...props} />
+}
 
-export default Container;
+export default Container

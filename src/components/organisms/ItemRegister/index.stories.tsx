@@ -1,6 +1,6 @@
-import React, { ComponentProps } from 'react';
-import { Meta, Story } from '@storybook/react';
-import ItemRegister from '.';
+import React, { ComponentProps } from 'react'
+import { Meta, Story } from '@storybook/react'
+import ItemRegister from '.'
 
 export default {
   title: 'components/organisms/ItemRegister',
@@ -10,13 +10,13 @@ export default {
       action: 'clicked',
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story<ComponentProps<typeof ItemRegister>> = (props) => (
   <ItemRegister {...props} />
-);
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   setCategory: [
     { type: 'beer_and_low-malt-beer', name: 'ビール・発泡酒' },
@@ -25,4 +25,4 @@ Default.args = {
     { type: 'wine', name: 'ワイン' },
     { type: 'western-liquor', name: '洋酒' },
   ],
-};
+}

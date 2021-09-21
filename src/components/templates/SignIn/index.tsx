@@ -1,34 +1,34 @@
-import React, { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import { signInWithEmailAndPassword } from '@firebase/auth';
-import { collection, doc, getDoc } from '@firebase/firestore';
-import { auth, db } from '@/lib/firebase';
-import { userProps } from '@/models/types';
-import { signIn } from '@/modules/user/userSlice';
-import RegisterButton from '@/components/molecules/RegisterButton';
-import Spacer from '@/components/atoms/Spacer';
-import TextField from '@/components/molecules/TextField';
+import React, { useState, useCallback } from 'react'
+import { useDispatch } from 'react-redux'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import styled from 'styled-components'
+import { signInWithEmailAndPassword } from '@firebase/auth'
+import { collection, doc, getDoc } from '@firebase/firestore'
+import { auth, db } from '@/lib/firebase'
+import { userProps } from '@/models/types'
+import { signIn } from '@/modules/user/userSlice'
+import RegisterButton from '@/components/molecules/RegisterButton'
+import Spacer from '@/components/atoms/Spacer'
+import TextField from '@/components/molecules/TextField'
 
 type ContainerProps = {
-  email: string;
-  password: string;
-  inputEmail: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  email: string
+  password: string
+  inputEmail: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
   inputPassword: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
-  >;
-  onSignIn: () => void;
-};
+  >
+  onSignIn: () => void
+}
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
   const { className, email, password, inputEmail, inputPassword, onSignIn } =
-    props;
+    props
 
   return (
     <div className={className}>
@@ -62,8 +62,8 @@ const Component: React.VFC<Props> = (props) => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const StyledComponent = styled(Component)`
   max-width: 100vw;
@@ -83,52 +83,52 @@ const StyledComponent = styled(Component)`
     margin: 2rem auto 0 auto;
     text-align: center;
   }
-`;
+`
 
 const Container: React.VFC<Partial<ContainerProps>> = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
 
   const inputEmail = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setEmail(event.target.value);
+      setEmail(event.target.value)
     },
     [setEmail]
-  );
+  )
 
   const inputPassword = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setPassword(event.target.value);
+      setPassword(event.target.value)
     },
     [setPassword]
-  );
+  )
 
-  const dispatch = useDispatch();
-  const router = useRouter();
+  const dispatch = useDispatch()
+  const router = useRouter()
 
   const onSignIn = async () => {
     // TODO: ちゃんとしたバリデーションを後で実装する
     if (email === '' || password === '') {
-      alert('必須項目が未入力です。');
-      return false;
+      alert('必須項目が未入力です。')
+      return false
     }
 
     try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      const user = result.user;
+      const result = await signInWithEmailAndPassword(auth, email, password)
+      const user = result.user
 
       if (!user.emailVerified) {
         alert(
           'メールアドレスの認証が完了していません。送信されたメールの URL をクリックして本登録を完了させてください。'
-        );
-        return false;
+        )
+        return false
       }
 
       if (user) {
-        const uid = user.uid;
-        const userRef = collection(db, 'user');
-        const userSnap = await getDoc(doc(userRef, uid));
-        const userData = userSnap.data() as userProps;
+        const uid = user.uid
+        const userRef = collection(db, 'user')
+        const userSnap = await getDoc(doc(userRef, uid))
+        const userData = userSnap.data() as userProps
 
         dispatch(
           signIn({
@@ -137,19 +137,19 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
             uid: uid,
             username: userData.username,
           })
-        );
+        )
 
-        router.push('/');
+        router.push('/')
       }
     } catch (error) {
       if (error instanceof Error) {
         alert(
           'ログインに失敗しました。メールアドレスやパスワードが合っているか確認してください。'
-        );
-        console.error(error.message);
+        )
+        console.error(error.message)
       }
     }
-  };
+  }
 
   const containerProps = {
     email,
@@ -157,9 +157,9 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
     inputEmail,
     inputPassword,
     onSignIn,
-  };
+  }
 
-  return <StyledComponent {...{ ...containerProps }} />;
-};
+  return <StyledComponent {...{ ...containerProps }} />
+}
 
-export default Container;
+export default Container

@@ -1,9 +1,9 @@
 // v9 -------------------------------------------------------------------------
-import { initializeApp, getApps } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore, serverTimestamp } from 'firebase/firestore';
-import { getFunctions } from 'firebase/functions';
-import { getStorage } from 'firebase/storage';
+import { initializeApp, getApps } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore, serverTimestamp } from 'firebase/firestore'
+import { getFunctions } from 'firebase/functions'
+import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -13,22 +13,22 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
-};
+}
 
-!getApps().length ? initializeApp(firebaseConfig) : getApps();
+!getApps().length ? initializeApp(firebaseConfig) : getApps()
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const functions = getFunctions(app);
-export const storage = getStorage(app);
-export const firebaseTimestamp = serverTimestamp();
+const app = initializeApp(firebaseConfig)
+export const auth = getAuth(app)
+export const db = getFirestore(app)
+export const functions = getFunctions(app)
+export const storage = getStorage(app)
+export const firebaseTimestamp = serverTimestamp()
 
 // v8 -------------------------------------------------------------------------
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/storage';
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/firestore'
+import 'firebase/compat/storage'
 
-firebase.initializeApp(firebaseConfig);
-export const storageV8 = firebase.storage();
-export const dbV8 = firebase.firestore();
+firebase.initializeApp(firebaseConfig)
+export const storageV8 = firebase.storage()
+export const dbV8 = firebase.firestore()

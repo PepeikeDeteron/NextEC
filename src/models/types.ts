@@ -1,23 +1,23 @@
-export type ColorProps = 'primary' | 'secondary' | 'inherit';
+export type ColorProps = 'primary' | 'secondary' | 'inherit'
 
 export type userProps = {
-  isSignedIn: boolean;
-  role: string;
-  uid: string;
-  username: string;
-};
+  isSignedIn: boolean
+  role: string
+  uid: string
+  username: string
+}
 
 export type imageProps = {
-  id: string;
-  path: string;
-};
+  id: string
+  path: string
+}
 
 export type itemProps = {
-  images: imageProps[];
-  name: string;
-  description: string;
-  category: string;
-  capacity: number;
-  number: number;
-  price: number;
-};
+  images: imageProps[]
+  name: string
+  description: string
+  category: string
+  capacity: number
+  number: number
+  price: number
+}

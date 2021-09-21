@@ -1,24 +1,24 @@
-import { IconButton } from '@material-ui/core';
-import React from 'react';
-import styled from 'styled-components';
+import { IconButton } from '@material-ui/core'
+import React from 'react'
+import styled from 'styled-components'
 
 type ContainerProps = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.FC<Props> = (props) => {
-  const { className, children } = props;
+  const { className, children } = props
 
   return (
     <IconButton className={className}>
       <label>{children}</label>
     </IconButton>
-  );
-};
+  )
+}
 
 const StyledComponent = styled(Component)`
   height: 4rem;
@@ -27,10 +27,10 @@ const StyledComponent = styled(Component)`
   & .input {
     display: none;
   }
-`;
+`
 
 const Container: React.FC<ContainerProps> = (props) => {
-  return <StyledComponent {...props} />;
-};
+  return <StyledComponent {...props} />
+}
 
-export default Container;
+export default Container

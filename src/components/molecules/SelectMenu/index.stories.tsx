@@ -1,6 +1,6 @@
-import React, { ComponentProps } from 'react';
-import { Meta, Story } from '@storybook/react';
-import SelectMenu from '.';
+import React, { ComponentProps } from 'react'
+import { Meta, Story } from '@storybook/react'
+import SelectMenu from '.'
 
 export default {
   title: 'components/molecules/SelectMenu',
@@ -10,13 +10,13 @@ export default {
       action: 'entered',
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story<ComponentProps<typeof SelectMenu>> = (props) => (
   <SelectMenu {...props} />
-);
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   options: [
     { type: 'aaa', name: 'ひらがな' },
@@ -30,4 +30,4 @@ Default.args = {
     { type: 'iii', name: '(´・ω・｀)' },
     { type: 'jjj', name: '🤪' },
   ],
-};
+}

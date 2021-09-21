@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import Template from '@/components/templates/ResetPassword';
+import Head from 'next/head'
+import Template from '@/components/templates/ResetPassword'
 
 const ResetPassword: React.VFC = () => {
   return (
@@ -9,7 +9,7 @@ const ResetPassword: React.VFC = () => {
       </Head>
       <Template />
     </>
-  );
-};
+  )
+}
 
-export default ResetPassword;
+export default ResetPassword

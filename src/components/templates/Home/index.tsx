@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { fetchItems } from '@/modules/item/itemSlice';
-import { RootState } from '@/modules/store';
-import ItemCard from '@/components/organisms/ItemCard';
-import { itemProps } from '@/models/types';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+import { fetchItems } from '@/modules/item/itemSlice'
+import { RootState } from '@/modules/store'
+import ItemCard from '@/components/organisms/ItemCard'
+import { itemProps } from '@/models/types'
 
 type ContainerProps = {
-  items: itemProps[];
-};
+  items: itemProps[]
+}
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, items } = props;
+  const { className, items } = props
 
   // 商品一覧をリスト表示
   return (
@@ -30,8 +30,8 @@ const Component: React.VFC<Props> = (props) => {
           />
         ))}
     </section>
-  );
-};
+  )
+}
 
 const StyledComponent = styled(Component)`
   display: flex;
@@ -42,20 +42,20 @@ const StyledComponent = styled(Component)`
   margin: 0 auto;
   padding: 3rem;
   gap: 4rem;
-`;
+`
 
 const Container: React.VFC<Partial<ContainerProps>> = () => {
-  const dispatch = useDispatch();
-  const items = useSelector((state: RootState) => state.items.item.list);
+  const dispatch = useDispatch()
+  const items = useSelector((state: RootState) => state.items.item.list)
 
   // 初期レンダー時に商品一覧を取得
   useEffect(() => {
-    dispatch(fetchItems());
-  }, []);
+    dispatch(fetchItems())
+  }, [])
 
-  const containerProps = { items };
+  const containerProps = { items }
 
-  return <StyledComponent {...{ ...containerProps }} />;
-};
+  return <StyledComponent {...{ ...containerProps }} />
+}
 
-export default Container;
+export default Container

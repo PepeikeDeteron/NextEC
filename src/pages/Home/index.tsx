@@ -1,6 +1,6 @@
-import Head from 'next/head';
-import Template from '@/components/templates/Home';
-import SignOut from '@/components/organisms/SignOut';
+import Head from 'next/head'
+import Template from '@/components/templates/Home'
+import SignOut from '@/components/organisms/SignOut'
 
 const Home: React.VFC = () => {
   return (
@@ -11,7 +11,7 @@ const Home: React.VFC = () => {
       <Template />
       <SignOut />
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

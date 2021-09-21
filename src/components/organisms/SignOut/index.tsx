@@ -1,23 +1,23 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import { signOut as authSignOut } from '@firebase/auth';
-import { auth } from '@/lib/firebase';
-import { signOut } from '@/modules/user/userSlice';
-import RegisterButton from '@/components/molecules/RegisterButton';
-import Spacer from '@/components/atoms/Spacer';
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
+import styled from 'styled-components'
+import { signOut as authSignOut } from '@firebase/auth'
+import { auth } from '@/lib/firebase'
+import { signOut } from '@/modules/user/userSlice'
+import RegisterButton from '@/components/molecules/RegisterButton'
+import Spacer from '@/components/atoms/Spacer'
 
 type ContainerProps = {
-  onSignOut: () => void;
-};
+  onSignOut: () => void
+}
 
 type Props = {
-  className?: string;
-} & ContainerProps;
+  className?: string
+} & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { onSignOut } = props;
+  const { onSignOut } = props
   return (
     <>
       <Spacer height={32} />
@@ -25,32 +25,32 @@ const Component: React.VFC<Props> = (props) => {
         <RegisterButton label="サインアウト" onClick={onSignOut} />
       </div>
     </>
-  );
-};
+  )
+}
 
 const StyledComponent = styled(Component)`
   & .center {
     margin: 0 auto;
     text-align: center;
   }
-`;
+`
 
 const Container: React.VFC<Partial<ContainerProps>> = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
+  const dispatch = useDispatch()
+  const router = useRouter()
 
   const onSignOut = async () => {
-    authSignOut(auth);
-    dispatch(signOut());
+    authSignOut(auth)
+    dispatch(signOut())
 
-    router.push('/SignIn');
-  };
+    router.push('/SignIn')
+  }
 
   const containerProps = {
     onSignOut,
-  };
+  }
 
-  return <StyledComponent {...{ ...containerProps }} />;
-};
+  return <StyledComponent {...{ ...containerProps }} />
+}
 
-export default Container;
+export default Container

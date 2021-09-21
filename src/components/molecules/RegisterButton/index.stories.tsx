@@ -1,6 +1,6 @@
-import React, { ComponentProps } from 'react';
-import { Meta, Story } from '@storybook/react';
-import RegisterButton from '.';
+import React, { ComponentProps } from 'react'
+import { Meta, Story } from '@storybook/react'
+import RegisterButton from '.'
 
 export default {
   title: 'components/molecules/RegisterButton',
@@ -13,25 +13,25 @@ export default {
       action: 'clicked',
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story<ComponentProps<typeof RegisterButton>> = (props) => (
   <RegisterButton {...props} />
-);
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   label: 'Default',
-};
+}
 
-export const Primary = Template.bind({});
+export const Primary = Template.bind({})
 Primary.args = {
   color: 'primary',
   label: 'Primary',
-};
+}
 
-export const Secondary = Template.bind({});
+export const Secondary = Template.bind({})
 Secondary.args = {
   color: 'secondary',
   label: 'Secondary',
-};
+}
