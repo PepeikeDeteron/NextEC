@@ -27,6 +27,7 @@ const Component: React.VFC<Props> = (props) => {
             // images={item.images}
             name={item.name}
             price={item.price}
+            uid={item.uid}
           />
         ))}
     </section>

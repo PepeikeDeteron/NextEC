@@ -13,6 +13,7 @@ export type imageProps = {
 }
 
 export type itemProps = {
+  uid: string
   images: imageProps
   name: string
   description: string
