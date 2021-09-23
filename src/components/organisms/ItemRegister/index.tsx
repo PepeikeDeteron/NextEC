@@ -3,13 +3,13 @@ import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { collection, doc, setDoc } from '@firebase/firestore'
 import { db, firebaseTimestamp } from '@/lib/firebase'
+import { categories } from '@/data/category'
+import { imageProps } from '@/models/types'
 import Spacer from '@/components/atoms/Spacer'
 import RegisterButton from '@/components/molecules/RegisterButton'
 import SelectMenu from '@/components/molecules/SelectMenu'
 import TextField from '@/components/molecules/TextField'
 // import ImageArea from '@/components/organisms/ImageArea';
-import { categories } from '@/data/category'
-import { imageProps } from '@/models/types'
 
 type ContainerProps = {
   images: imageProps[]

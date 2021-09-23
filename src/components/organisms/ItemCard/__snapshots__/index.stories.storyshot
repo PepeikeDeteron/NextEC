@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/organisms/ItemCard Default 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root sc-hKgJUU gJwYmn MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="MuiCardContent-root content"
+  >
+    <span
+      className="MuiTypography-root item MuiTypography-caption MuiTypography-colorTextSecondary"
+    >
+      商品名
+    </span>
+    <p
+      className="MuiTypography-root price MuiTypography-body1 MuiTypography-colorError"
+    >
+      ¥ 
+      10,000,000
+    </p>
+  </div>
+</div>
+`;

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { fetchItems } from '@/modules/item/itemSlice'
-import { RootState } from '@/modules/store'
-import ItemCard from '@/components/organisms/ItemCard'
+import { fetchItems } from '@/features/item/itemSlice'
+import { RootState } from '@/features/store'
 import { itemProps } from '@/models/types'
+import ItemCard from '@/components/organisms/ItemCard'
 
 type ContainerProps = {
   items: itemProps[]
@@ -21,10 +21,10 @@ const Component: React.VFC<Props> = (props) => {
   return (
     <section className={className}>
       {items.length > 0 &&
-        items.filter((item) => (
+        items.map((item) => (
           <ItemCard
             key={item.name}
-            images={item.images}
+            // images={item.images}
             name={item.name}
             price={item.price}
           />
@@ -38,15 +38,15 @@ const StyledComponent = styled(Component)`
   flex-flow: row wrap;
   text-align: center;
   max-width: 1260px;
-  width: 100%;
   margin: 0 auto;
-  padding: 3rem;
-  gap: 4rem;
+  padding: 4rem 0 2rem 3rem;
+  gap: 3rem;
 `
 
 const Container: React.VFC<Partial<ContainerProps>> = () => {
   const dispatch = useDispatch()
-  const items = useSelector((state: RootState) => state.items.item.list)
+
+  const items = useSelector((state: RootState) => state.items.item)
 
   // 初期レンダー時に商品一覧を取得
   useEffect(() => {

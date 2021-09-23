@@ -4,15 +4,11 @@ import { dbV8 } from '@/lib/firebase'
 import { itemProps } from '@/models/types'
 
 type State = {
-  item: {
-    list: itemProps[]
-  }
+  item: itemProps[]
 }
 
 const initialState: State = {
-  item: {
-    list: [],
-  },
+  item: [],
 }
 
 export const itemSlice = createSlice({
@@ -22,7 +18,7 @@ export const itemSlice = createSlice({
     items: (state: State, action: PayloadAction<itemProps[]>) => {
       return {
         ...state,
-        list: [...action.payload],
+        item: [...action.payload],
       }
     },
   },

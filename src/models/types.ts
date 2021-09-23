@@ -13,7 +13,7 @@ export type imageProps = {
 }
 
 export type itemProps = {
-  images: imageProps[]
+  images: imageProps
   name: string
   description: string
   category: string

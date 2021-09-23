@@ -5,19 +5,19 @@ import {
   CardProps,
   CardContent,
   CardContentProps,
-  CardMedia,
+  // CardMedia,
   CardMediaProps,
   Typography,
   TypographyProps,
 } from '@material-ui/core'
-import NoImage from '../../../assets/no-image.jpg'
-import { imageProps, itemProps } from '@/models/types'
+// import NoImage from '../../../assets/no-image.jpg'
+import { itemProps } from '@/models/types'
 
 type ContainerProps = CardProps &
   CardContentProps &
   Omit<CardMediaProps, 'image'> &
   Omit<TypographyProps, 'variant'> & {
-    images: imageProps[]
+    images?: itemProps['images']
     name: itemProps['name']
     price: itemProps['price'] | string
   }
@@ -27,11 +27,11 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, images, name, price } = props
+  const { className, name, price } = props
 
   return (
     <Card className={className}>
-      <CardMedia className="media" image={images[0].path} title="" />
+      {/* <CardMedia className="media" image={images.path[0]} title="" /> */}
       <CardContent className="content">
         <Typography className="item" variant="caption" color="textSecondary">
           {name}
@@ -47,8 +47,6 @@ const Component: React.VFC<Props> = (props) => {
 const StyledComponent = styled(Component)`
   // PC 3カラム
   width: calc(100% / 3 - 30px);
-  min-height: 40rem;
-  margin: 0 auto;
 
   .media {
     height: 0;
@@ -56,7 +54,6 @@ const StyledComponent = styled(Component)`
   }
 
   .content {
-    padding: 16px 10px;
     text-align: left;
   }
 
@@ -72,23 +69,21 @@ const StyledComponent = styled(Component)`
   // タブレット 2カラム
   @media screen and (max-width: 1024px) {
     width: calc(100% / 2 - 30px);
-    min-height: 45rem;
   }
 
   // スマホ 1カラム
   @media screen and (max-width: 599px) {
     width: calc(100% / 1 - 30px);
-    min-height: 35rem;
   }
 `
 
 const Container: React.VFC<ContainerProps> = (props) => {
-  const images = props.images.length > 0 ? props.images : [{ path: NoImage }]
+  // const images = (props.images.path.length > 0) ? props.images : [NoImage]
   const price = props.price.toLocaleString() // 3桁区切りの数値に変換
 
-  const containerProps = { images, price }
+  const containerProps = { price }
 
-  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />
+  return <StyledComponent {...props} {...containerProps} />
 }
 
 export default Container
