@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { collection, doc, setDoc } from '@firebase/firestore'
 import { db, firebaseTimestamp } from '@/lib/firebase'
 import { categories } from '@/data/category'
-import { imageProps } from '@/models/types'
+import { imageProps, itemProps } from '@/models/types'
 import Spacer from '@/components/atoms/Spacer'
 import RegisterButton from '@/components/molecules/RegisterButton'
 import SelectMenu from '@/components/molecules/SelectMenu'
@@ -13,12 +13,12 @@ import TextField from '@/components/molecules/TextField'
 
 type ContainerProps = {
   images: imageProps[]
-  name: string
-  description: string
-  category: string
-  capacity: number
-  number: number
-  price: number
+  name: itemProps['name']
+  description: itemProps['description']
+  category: itemProps['category']
+  capacity: itemProps['capacity']
+  number: itemProps['number']
+  price: itemProps['price']
   setImages: React.Dispatch<React.SetStateAction<imageProps[]>>
   setCategory: any // FIXME
   inputName: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
