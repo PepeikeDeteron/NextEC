@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { fetchItems } from '@/features/item/itemSlice'
 import { RootState } from '@/features/store'
-import ItemCard from '@/components/organisms/ItemCard'
 import { itemProps } from '@/models/types'
+import ItemCard from '@/components/organisms/ItemCard'
 
 type ContainerProps = {
   items: itemProps[]

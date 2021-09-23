@@ -2,9 +2,9 @@ import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate'
 import { storageV8 } from '@/lib/firebase'
+import { imageProps } from '@/models/types'
 import ImagePreview from '@/components/atoms/ImagePreview'
 import IconButton from '@/components/molecules/IconButton'
-import { imageProps } from '@/models/types'
 
 type ContainerProps = {
   images: imageProps[]
