@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components'
 import { StylesProvider, MuiThemeProvider } from '@material-ui/core/styles'
 import 'normalize.css'
 import '../styles/globals.css'
-import { store } from '@/modules/store'
+import { store } from '@/features/store'
 import theme from '@/styles/theme'
 
 const App: React.VFC<AppProps> = ({

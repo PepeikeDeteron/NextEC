@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { signOut as authSignOut } from '@firebase/auth'
 import { auth } from '@/lib/firebase'
-import { signOut } from '@/modules/user/userSlice'
+import { signOut } from '@/features/user/userSlice'
 import RegisterButton from '@/components/molecules/RegisterButton'
 import Spacer from '@/components/atoms/Spacer'
 
