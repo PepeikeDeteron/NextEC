@@ -54,7 +54,6 @@ const StyledComponent = styled(Component)`
   }
 
   .content {
-    padding: 16px 10px;
     text-align: left;
   }
 
