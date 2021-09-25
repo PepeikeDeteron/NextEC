@@ -11,7 +11,7 @@ const Home: React.VFC = () => {
   return (
     <>
       <Head>
-        <title>ホーム画面</title>
+        <title>NextEC｜お酒の通販サイト</title>
       </Head>
       <p>UserId: {userId}</p>
       <p>UserName: {userName}</p>
