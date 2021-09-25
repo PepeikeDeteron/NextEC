@@ -2,7 +2,8 @@
 
 exports[`Storyshots components/organisms/ItemCard Default 1`] = `
 <div
-  className="MuiPaper-root MuiCard-root sc-hKgJUU gJwYmn MuiPaper-elevation1 MuiPaper-rounded"
+  className="MuiPaper-root MuiCard-root sc-eCstlR cbFHxW MuiPaper-elevation1 MuiPaper-rounded"
+  onClick={[Function]}
 >
   <div
     className="MuiCardContent-root content"

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Header from '@/components/organisms/Header'
 import Template from '@/components/templates/ResetPassword'
 
 const ResetPassword: React.VFC = () => {
@@ -7,6 +8,7 @@ const ResetPassword: React.VFC = () => {
       <Head>
         <title>パスワードリセット</title>
       </Head>
+      <Header />
       <Template />
     </>
   )
