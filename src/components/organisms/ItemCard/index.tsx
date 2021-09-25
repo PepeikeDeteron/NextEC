@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import {
   Card,
@@ -20,6 +21,7 @@ type ContainerProps = CardProps &
     images?: itemProps['images']
     name: itemProps['name']
     price: itemProps['price'] | string
+    uid: itemProps['uid']
   }
 
 type Props = {
@@ -27,10 +29,12 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, name, price } = props
+  const { className, name, price, uid } = props
+
+  const router = useRouter()
 
   return (
-    <Card className={className}>
+    <Card className={className} onClick={() => router.push(uid)}>
       {/* <CardMedia className="media" image={images.path[0]} title="" /> */}
       <CardContent className="content">
         <Typography className="item" variant="caption" color="textSecondary">
