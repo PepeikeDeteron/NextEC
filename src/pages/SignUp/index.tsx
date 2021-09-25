@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Header from '@/components/organisms/Header'
 import Template from '@/components/templates/SignUp'
 
 const SignUp: React.VFC = () => {
@@ -7,6 +8,7 @@ const SignUp: React.VFC = () => {
       <Head>
         <title>新規登録</title>
       </Head>
+      <Header />
       <Template />
     </>
   )

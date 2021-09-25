@@ -1,22 +1,17 @@
 import Head from 'next/head'
-import Template from '@/components/templates/Home'
+import Header from '@/components/organisms/Header'
 import SignOut from '@/components/organisms/SignOut'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/features/store'
+import Template from '@/components/templates/Home'
 
 const Home: React.VFC = () => {
-  const userId = useSelector((state: RootState) => state.users.user.uid)
-  const userName = useSelector((state: RootState) => state.users.user.username)
-
   return (
     <>
       <Head>
         <title>NextEC｜お酒の通販サイト</title>
       </Head>
-      <p>UserId: {userId}</p>
-      <p>UserName: {userName}</p>
-      <SignOut />
+      <Header />
       <Template />
+      <SignOut />
     </>
   )
 }
