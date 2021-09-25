@@ -5,7 +5,7 @@ const ItemDetail: React.VFC = () => {
   return (
     <>
       <Head>
-        <title>商品詳細</title>
+        <title>商品情報</title>
       </Head>
       <Template />
     </>
