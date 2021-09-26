@@ -24,9 +24,14 @@ const Component: React.VFC<Props> = (props) => {
     <section className={className}>
       {items && (
         <div className="detail">
-          <h4>※商品のイメージギャラリーを実装予定</h4>
+          <div className="center">
+            <h2 className="maintenance">- - - メンテナンス中 - - -</h2>
+            <Spacer height={4} />
+            <p>※商品のイメージギャラリーを実装予定</p>
+          </div>
+
           {/* <ImageGallery items={galleries}/> */}
-          <Spacer height={32} />
+          <Spacer height={64} />
 
           <Typography className="title" variant="caption">
             {items.name}
@@ -73,6 +78,14 @@ const StyledComponent = styled(Component)`
 
   .number {
     font-size: 2rem;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .maintenance {
+    color: red;
   }
 `
 
