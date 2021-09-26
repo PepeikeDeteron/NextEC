@@ -1,22 +1,35 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import {
   AppBar,
   Box,
+  Drawer,
   IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
   Toolbar,
   Typography,
   TypographyProps,
 } from '@material-ui/core'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import MenuIcon from '@material-ui/icons/Menu'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import { signOut as authSignOut } from '@firebase/auth'
+import { signOut } from '@/features/user/userSlice'
 import { RootState } from '@/features/store'
+import { auth } from '@/lib/firebase'
+import { drawerMenus } from '@/data/drawer'
 import { userProps } from '@/models/types'
 
 type ContainerProps = Omit<TypographyProps, 'variant' | 'color'> & {
   userName?: userProps['username']
+  drawerOpen: boolean
+  handleDrawerToggle: () => void
+  handleSignOut: () => void
 }
 
 type Props = {
@@ -24,7 +37,8 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, userName } = props
+  const { className, userName, drawerOpen, handleDrawerToggle, handleSignOut } =
+    props
 
   const router = useRouter()
 
@@ -32,7 +46,7 @@ const Component: React.VFC<Props> = (props) => {
     <div className={className}>
       <AppBar className="app-bar">
         <Toolbar>
-          <IconButton className="menu-button">
+          <IconButton className="menu-button" onClick={handleDrawerToggle}>
             <MenuIcon className="icon" />
           </IconButton>
 
@@ -57,6 +71,28 @@ const Component: React.VFC<Props> = (props) => {
           </div>
         </Toolbar>
       </AppBar>
+
+      <Drawer
+        variant="temporary"
+        open={drawerOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{ keepMounted: true }}
+      >
+        <List>
+          {drawerMenus.map((menu) => (
+            <ListItem button key={menu.id}>
+              <ListItemIcon>{menu.icon}</ListItemIcon>
+              <ListItemText primary={menu.label} />
+            </ListItem>
+          ))}
+          <ListItem button key="logout" onClick={handleSignOut}>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="ログアウト" />
+          </ListItem>
+        </List>
+      </Drawer>
     </div>
   )
 }
@@ -97,10 +133,30 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.VFC<ContainerProps> = () => {
+const Container: React.VFC<Partial<ContainerProps>> = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  const [drawerOpen, setDrawerOpen] = useState(false)
+
   const userName = useSelector((state: RootState) => state.users.user.username)
 
-  const containerProps = { userName }
+  const handleDrawerToggle = () => setDrawerOpen(!drawerOpen)
+
+  const handleSignOut = async () => {
+    authSignOut(auth)
+    dispatch(signOut())
+
+    router.push('/SignIn')
+  }
+
+  const containerProps = {
+    userName,
+    drawerOpen,
+    setDrawerOpen,
+    handleDrawerToggle,
+    handleSignOut,
+  }
 
   return <StyledComponent {...{ ...containerProps }} />
 }
