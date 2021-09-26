@@ -2,7 +2,7 @@
 
 exports[`Storyshots components/molecules/SelectMenu Default 1`] = `
 <div
-  className="MuiFormControl-root sc-gsTEea bYpZXr"
+  className="MuiFormControl-root SelectMenu__StyledComponent-sc-158labe-0 kCawvB"
 >
   <label
     className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled Mui-required Mui-required"

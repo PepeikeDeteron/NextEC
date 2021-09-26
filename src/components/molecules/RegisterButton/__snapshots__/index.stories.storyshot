@@ -2,7 +2,7 @@
 
 exports[`Storyshots components/molecules/RegisterButton Default 1`] = `
 <button
-  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo MuiButton-containedPrimary"
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained RegisterButton__StyledComponent-sc-1dh9qne-0 frlHCm MuiButton-containedPrimary"
   disabled={false}
   onBlur={[Function]}
   onDragLeave={[Function]}
@@ -28,7 +28,7 @@ exports[`Storyshots components/molecules/RegisterButton Default 1`] = `
 
 exports[`Storyshots components/molecules/RegisterButton Primary 1`] = `
 <button
-  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo MuiButton-containedPrimary"
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained RegisterButton__StyledComponent-sc-1dh9qne-0 frlHCm MuiButton-containedPrimary"
   disabled={false}
   onBlur={[Function]}
   onDragLeave={[Function]}
@@ -54,7 +54,7 @@ exports[`Storyshots components/molecules/RegisterButton Primary 1`] = `
 
 exports[`Storyshots components/molecules/RegisterButton Secondary 1`] = `
 <button
-  className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-bdfBQB bZiBBo MuiButton-containedSecondary"
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained RegisterButton__StyledComponent-sc-1dh9qne-0 frlHCm MuiButton-containedSecondary"
   disabled={false}
   onBlur={[Function]}
   onDragLeave={[Function]}
