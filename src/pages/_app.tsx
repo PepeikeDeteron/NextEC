@@ -23,11 +23,11 @@ const App: React.VFC<AppProps> = ({
     <>
       <Provider store={store}>
         <StylesProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <MuiThemeProvider theme={theme}>
+          <MuiThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
               <Component {...pageProps} />
-            </MuiThemeProvider>
-          </ThemeProvider>
+            </ThemeProvider>
+          </MuiThemeProvider>
         </StylesProvider>
       </Provider>
     </>
