@@ -5,9 +5,12 @@ import { Typography, TypographyProps } from '@material-ui/core'
 import { dbV8 } from '@/lib/firebase'
 import { itemProps } from '@/models/types'
 import Spacer from '@/components/atoms/Spacer'
+// import ImageGallery from 'react-image-gallery'
 
 type ContainerProps = Omit<TypographyProps, 'variant'> & {
   items: itemProps
+  // images: itemProps['images'][]
+  // galleries: string[]
 }
 
 type Props = {
@@ -21,6 +24,15 @@ const Component: React.VFC<Props> = (props) => {
     <section className={className}>
       {items && (
         <div className="detail">
+          <div className="center">
+            <h2 className="maintenance">- - - メンテナンス中 - - -</h2>
+            <Spacer height={4} />
+            <p>※商品のイメージギャラリーを実装予定</p>
+          </div>
+
+          {/* <ImageGallery items={galleries}/> */}
+          <Spacer height={64} />
+
           <Typography className="title" variant="caption">
             {items.name}
           </Typography>
@@ -67,6 +79,14 @@ const StyledComponent = styled(Component)`
   .number {
     font-size: 2rem;
   }
+
+  .center {
+    text-align: center;
+  }
+
+  .maintenance {
+    color: red;
+  }
 `
 
 const Container: React.VFC<Partial<ContainerProps>> = () => {
@@ -85,6 +105,14 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
       setItems(itemData)
     })()
   }, [uid])
+
+  // 商品画像のスライダー
+  // const galleries = [
+  //   {
+  //     original: props.images,
+  //     thumbnail: props.images,
+  //   }
+  // ]
 
   const containerProps = { items }
 

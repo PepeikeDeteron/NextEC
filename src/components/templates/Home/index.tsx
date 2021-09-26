@@ -56,7 +56,7 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
 
   const containerProps = { items }
 
-  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />
+  return <StyledComponent {...{ ...containerProps }} />
 }
 
 export default Container
