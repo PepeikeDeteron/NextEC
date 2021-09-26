@@ -30,6 +30,7 @@ type ContainerProps = Omit<TypographyProps, 'variant' | 'color'> & {
   drawerOpen: boolean
   handleDrawerToggle: () => void
   handleSignOut: () => void
+  handleSignIn: () => void
 }
 
 type Props = {
@@ -37,8 +38,14 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, userName, drawerOpen, handleDrawerToggle, handleSignOut } =
-    props
+  const {
+    className,
+    userName,
+    drawerOpen,
+    handleDrawerToggle,
+    handleSignOut,
+    handleSignIn,
+  } = props
 
   const router = useRouter()
 
@@ -61,7 +68,7 @@ const Component: React.VFC<Props> = (props) => {
           </Typography>
 
           <div className="nav-tools">
-            <Typography className="user-name">
+            <Typography className="user-name" onClick={handleSignIn}>
               {`ユーザー名:  ${userName || 'ゲスト'} さん`}
             </Typography>
 
@@ -85,11 +92,11 @@ const Component: React.VFC<Props> = (props) => {
               <ListItemText primary={menu.label} />
             </ListItem>
           ))}
-          <ListItem button key="logout" onClick={handleSignOut}>
+          <ListItem button key="signout" onClick={handleSignOut}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
-            <ListItemText primary="ログアウト" />
+            <ListItemText primary="サインアウト" />
           </ListItem>
         </List>
       </Drawer>
@@ -150,12 +157,17 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
     router.push('/SignIn')
   }
 
+  const handleSignIn = () => {
+    if (!userName) router.push('/SignIn')
+  }
+
   const containerProps = {
     userName,
     drawerOpen,
     setDrawerOpen,
     handleDrawerToggle,
     handleSignOut,
+    handleSignIn,
   }
 
   return <StyledComponent {...{ ...containerProps }} />
