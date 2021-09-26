@@ -2,7 +2,7 @@
 
 exports[`Storyshots components/molecules/TextField Default 1`] = `
 <div
-  className="MuiFormControl-root MuiTextField-root sc-dlfnuX MuiFormControl-marginDense MuiFormControl-fullWidth"
+  className="MuiFormControl-root MuiTextField-root TextField__StyledComponent-sc-1tw54mi-0 MuiFormControl-marginDense MuiFormControl-fullWidth"
 >
   <div
     className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiFilledInput-marginDense"
