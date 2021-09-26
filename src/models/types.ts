@@ -14,7 +14,7 @@ export type imageProps = {
 
 export type itemProps = {
   uid: string
-  images: imageProps
+  images: any // imageProps
   name: string
   description: string
   category: string

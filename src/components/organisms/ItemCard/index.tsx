@@ -6,22 +6,22 @@ import {
   CardProps,
   CardContent,
   CardContentProps,
-  // CardMedia,
+  CardMedia,
   CardMediaProps,
   Typography,
   TypographyProps,
 } from '@material-ui/core'
-// import NoImage from '../../../assets/no-image.jpg'
+import NoImage from '../../../assets/no-image.jpg'
 import { itemProps } from '@/models/types'
 
 type ContainerProps = CardProps &
   CardContentProps &
   Omit<CardMediaProps, 'image'> &
   Omit<TypographyProps, 'variant'> & {
-    images?: itemProps['images']
+    uid: itemProps['uid']
+    images: itemProps['images'][]
     name: itemProps['name']
     price: itemProps['price'] | string
-    uid: itemProps['uid']
   }
 
 type Props = {
@@ -29,13 +29,13 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, name, price, uid } = props
+  const { className, uid, images, name, price } = props
 
   const router = useRouter()
 
   return (
     <Card className={className} onClick={() => router.push(uid)}>
-      {/* <CardMedia className="media" image={images.path[0]} title="" /> */}
+      <CardMedia className="media" image={images[0].path} title="" />
       <CardContent className="content">
         <Typography className="item" variant="caption" color="textSecondary">
           {name}
@@ -82,12 +82,12 @@ const StyledComponent = styled(Component)`
 `
 
 const Container: React.VFC<ContainerProps> = (props) => {
-  // const images = (props.images.path.length > 0) ? props.images : [NoImage]
+  const images = props.images || [NoImage]
   const price = props.price.toLocaleString() // 3桁区切りの数値に変換
 
-  const containerProps = { price }
+  const containerProps = { price, images }
 
-  return <StyledComponent {...props} {...containerProps} />
+  return <StyledComponent {...props} {...(containerProps as ContainerProps)} />
 }
 
 export default Container

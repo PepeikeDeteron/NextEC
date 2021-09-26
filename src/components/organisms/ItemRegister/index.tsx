@@ -189,7 +189,7 @@ const Container: React.FC<Partial<ContainerProps>> = () => {
       setDoc(doc(itemRef, uid), {
         created_at: timestamp,
         uid: uid,
-        image: images,
+        images: images,
         name: name,
         description: description,
         category: category,
