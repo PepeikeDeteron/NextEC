@@ -19,17 +19,29 @@ const Component: React.VFC<Props> = (props) => {
 
   return (
     <section className={className}>
-      <div className="detail">
-        <Typography className="title" variant="caption">
-          {items.name}
-        </Typography>
-        <Spacer height={32} />
-        <p>{items.description}</p>
-        <Spacer height={16} />
-        <p>{`容量: ${items.capacity} ml`}</p>
-        <p>{`在庫: ${items.number} 点`}</p>
-        <p>{`価格: ${items.price} 円`}</p>
-      </div>
+      {items && (
+        <div className="detail">
+          <Typography className="title" variant="caption">
+            {items.name}
+          </Typography>
+
+          <Spacer height={32} />
+
+          <Typography className="description" variant="caption">
+            {items.description}
+          </Typography>
+
+          <Spacer height={32} />
+
+          <Typography className="number">
+            {`容量: ${items.capacity} ml`}
+          </Typography>
+
+          <Typography className="number">{`在庫: ${items.number} 点`}</Typography>
+
+          <Typography className="number">{`価格: ${items.price} 円`}</Typography>
+        </div>
+      )}
     </section>
   )
 }
@@ -46,6 +58,14 @@ const StyledComponent = styled(Component)`
 
   .title {
     font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1.7rem;
+  }
+
+  .number {
+    font-size: 2rem;
   }
 `
 
