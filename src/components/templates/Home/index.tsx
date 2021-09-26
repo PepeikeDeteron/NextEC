@@ -24,10 +24,10 @@ const Component: React.VFC<Props> = (props) => {
         items.map((item) => (
           <ItemCard
             key={item.name}
-            // images={item.images}
+            uid={item.uid}
             name={item.name}
             price={item.price}
-            uid={item.uid}
+            images={item.images}
           />
         ))}
     </section>
@@ -56,7 +56,7 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
 
   const containerProps = { items }
 
-  return <StyledComponent {...{ ...containerProps }} />
+  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />
 }
 
 export default Container
